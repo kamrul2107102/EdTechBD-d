@@ -1,0 +1,23 @@
+{
+    "courseTitle": "Introduction to JavaScript",
+    "courseDescription": "test description" ,
+    "coursePrice": 49.99,
+    "discount": 20,
+    "courseContent": [
+        {
+            "chapterId": "chapter1",
+            "chapterOrder": 1,
+            "chapterTitle": "Getting Started with JavaScript",
+            "chapterContent": [
+                {
+                    "lectureId": "lecture1",
+                    "lectureTitle": "What is JavaScript?",
+                    "lectureDuration": 16,
+                    "lectureUrl": "https://youtu.be/CBWnBi-awSA",
+                    "isPreviewFree": true,
+                    "lectureOrder": 1
+                }
+            ]
+        }
+    ]
+    }
