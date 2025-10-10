@@ -27,6 +27,11 @@ import Learn from "./pages/student/Learn";
 import PythonCourse from "./pages/student/PythonCourse";
 import JavaScriptCourse from "./pages/student/JavaScriptCourse.jsx";
 import MachineLearningCourse from "./pages/student/MachineLearningCourse";
+import AdminLayout from "./pages/admin/AdminLayout";
+import AdminDashboard from "./pages/admin/AdminDashboard";
+import ManageUsers from "./pages/admin/ManageUsers";
+import ManageCourses from "./pages/admin/ManageCourses";
+import ApproveEducators from "./pages/admin/ApproveEducators";
 
 const App = () => {
   const isEducatorRoute = useMatch("/educator/*");
@@ -68,6 +73,13 @@ const App = () => {
           <Route path="audited-courses" element={<AuditedCourses />} />
           <Route path="student-enrolled" element={<StudentsEnrolled />} />
         </Route>
+        {/* If you want a shared sidebar layout later, wrap them in AdminLayout */}
+        <Route path="/admin" element={<AdminLayout />}>
+  <Route path="dashboard" element={<AdminDashboard />} />
+  <Route path="manage-users" element={<ManageUsers />} />
+  <Route path="manage-courses" element={<ManageCourses />} />
+  <Route path="approve-educators" element={<ApproveEducators />} />
+</Route>
       </Routes>
     </div>
   );
