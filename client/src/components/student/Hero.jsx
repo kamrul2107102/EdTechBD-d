@@ -43,7 +43,16 @@ const Hero = () => {
   }, [charIndex, typing, currentPhrase, phrases]);
 
   return (
-    <div className="relative w-full min-h-[85vh] md:min-h-[90vh] flex items-center justify-center overflow-hidden bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50">
+    <div className="relative w-full min-h-[85vh] md:min-h-[90vh] bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50">
+      {/* Hero Image */}
+      <div className="w-full h-48 md:h-64 overflow-hidden">
+        <img
+          src="https://img-c.udemycdn.com/notices/home_carousel_slide/image/c384c746-4a80-4e9f-8582-b0067704540b.jpg"
+          alt="Hero Banner"
+          className="w-full h-full object-cover"
+        />
+      </div>
+
       {/* Decorative background elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-20 left-10 w-72 h-72 bg-blue-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob"></div>
@@ -52,7 +61,7 @@ const Hero = () => {
       </div>
 
       {/* Content */}
-      <div className="relative z-10 flex flex-col items-center justify-center w-full px-6 md:px-8 space-y-8 text-center max-w-6xl mx-auto">
+      <div className="relative z-10 flex flex-col items-center justify-center w-full px-6 md:px-8 py-12 space-y-8 text-center max-w-6xl mx-auto">
         
         {/* Badge */}
         <div className="inline-flex items-center px-4 py-2 rounded-full bg-blue-100 text-blue-700 text-sm font-medium shadow-sm border border-blue-200">
