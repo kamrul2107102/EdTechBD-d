@@ -110,6 +110,28 @@ export const dummyEducatorData = {
 
 export const dummyTestimonial = [
     {
+        name: "Rahima Akter",
+        role: "Web Developer, Dhaka",
+        feedback: "This platform has completely changed my career trajectory. The courses are well-structured and the instructors are very supportive. I landed my dream job within 3 months of completing the Full Stack Development course!",
+        rating: 5,
+        image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150"
+      },
+      {
+        name: "Kamal Hossain",
+        role: "Digital Marketing Specialist, Chittagong",
+        feedback: "অসাধারণ শেখার অভিজ্ঞতা! The quality of content and practical projects helped me transition from a traditional marketing role to digital marketing. Highly recommend to anyone looking to upskill.",
+        rating: 5,
+        image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150"
+      },
+      {
+        name: "Nusrat Jahan",
+        role: "UI/UX Designer, Sylhet",
+        feedback: "Being from a small city, I never thought I could compete with designers from bigger cities. This platform gave me world-class education at my fingertips. The mentorship program was incredibly valuable!",
+        rating: 5,
+        image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150"
+      }
+,      
+    {
         name: 'Sophia Turner',
         role: 'Frontend Developer @ Netflix',
         image: assets.profile_img_1,
@@ -130,6 +152,10 @@ export const dummyTestimonial = [
         rating: 4,
         feedback: "Imagify is a game-changer for designers. It’s easy to use, efficient, and helps me deliver high-quality visuals consistently. I particularly enjoy how it maintains image clarity even after compression. The analytics and feedback features also provide valuable insights, helping me improve my designs over time. It’s a must-have tool for any creative professional aiming to save time without compromising quality.",
     },
+    // In your assets.js file, ADD these 3 new testimonials to your existing dummyTestimonial array:
+
+
+
 ];
 
 export const dummyDashboardData = {

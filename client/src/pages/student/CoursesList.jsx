@@ -3,26 +3,24 @@ import { AppContext } from "../../context/AppContext";
 import SearchBar from "../../components/student/SearchBar";
 import { useParams } from "react-router-dom";
 import CourseCard from "../../components/student/CourseCard";
-import { assets } from "../../assets/assets";
-import Footer from "../../components/student/Footer";
 import {
   Code,
   Briefcase,
   Globe,
   BarChart,
-  Award,
   Cpu,
   BookOpen,
   Star,
 } from "lucide-react";
 
 const CoursesList = () => {
-  const { navigate, allCourses } = useContext(AppContext);
+  const { allCourses } = useContext(AppContext);
   const { input } = useParams();
   const [filteredCourses, setFilteredCourses] = useState([]);
   const [selectedCategories, setSelectedCategories] = useState([]);
   const [sortOption, setSortOption] = useState("default");
-
+  const [selectedRating, setSelectedRating] = useState(null);
+  
   const categories = [
     { id: 1, name: "Development", icon: <Code size={18} /> },
     { id: 2, name: "Business", icon: <Briefcase size={18} /> },
@@ -66,6 +64,12 @@ const CoursesList = () => {
       );
     }
 
+    if (selectedRating !== null) {
+      tempCourses = tempCourses.filter((item) =>
+        item.averageRating >= selectedRating
+      );
+    }
+
     switch (sortOption) {
       case "lowToHigh":
         tempCourses.sort((a, b) => a.coursePrice - b.coursePrice);
@@ -82,12 +86,10 @@ const CoursesList = () => {
       case "newest":
         tempCourses.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
         break;
-      default:
-        break;
     }
 
     setFilteredCourses(tempCourses);
-  }, [allCourses, input, selectedCategories, sortOption]);
+  }, [allCourses, input, selectedCategories, sortOption, selectedRating]);
 
   const handleCategoryChange = (categoryName) => {
     setSelectedCategories((prev) =>
@@ -107,72 +109,72 @@ const CoursesList = () => {
 </div>
 
 
-      <div className="flex flex-col md:flex-row md:px-20 px-6 py-10 gap-8">
+      <div className="flex flex-col md:flex-row pr-6 py-10 gap-8">
         {/* 🧩 Sticky Filter Sidebar */}
-        <aside
-  className="w-full md:w-1/4 md:sticky md:top-[110px] self-start h-[calc(100vh-120px)] overflow-y-auto border-r pr-4 scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-transparent"
->
+          <aside
+          className="nline-block md:sticky md:top-[110px] self-start h-[calc(100vh-120px)] 
+             overflow-y-auto border-r pr-2 pl-2 scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-transparent"
+        >
 
-          <h3 className="text-xl font-semibold mb-4">Filter by</h3>
+            <h3 className="text-xl font-semibold mb-4">Filter by</h3>
 
-          {/* Categories */}
-          <div className="mb-6">
-            <h4 className="font-medium text-gray-700 mb-3">Categories</h4>
-            <div className="flex flex-col gap-2">
-              {categories.map((cat) => (
-                <label
-                  key={cat.id}
-                  className="flex items-center gap-2 text-gray-600 hover:text-blue-600 cursor-pointer"
-                >
-                  <input
-                    type="checkbox"
-                    checked={selectedCategories.includes(cat.name)}
-                    onChange={() => handleCategoryChange(cat.name)}
-                    className="accent-blue-600"
-                  />
-                  <div className="flex items-center gap-2 text-sm">
-                    {cat.icon} {cat.name}
-                  </div>
-                </label>
-              ))}
+            {/* Categories */}
+            <div className="mb-6">
+              <h4 className="font-medium text-gray-700 mb-3">Categories</h4>
+              <div className="flex flex-col gap-2">
+                {categories.map((cat) => (
+            <label
+              key={cat.id}
+              className="flex items-center gap-2 text-gray-600 hover:text-blue-600 cursor-pointer"
+            >
+              <input
+                type="checkbox"
+                checked={selectedCategories.includes(cat.name)}
+                onChange={() => handleCategoryChange(cat.name)}
+                className="accent-blue-600"
+              />
+              <div className="flex items-center gap-2 text-sm">
+                {cat.icon} {cat.name}
+              </div>
+            </label>
+                ))}
+              </div>
             </div>
-          </div>
 
-          {/* Ratings */}
-          <div className="mb-6">
-            <h4 className="font-medium text-gray-700 mb-3">Ratings</h4>
-            <div className="flex flex-col gap-2 text-gray-600 text-sm">
-              {[5, 4, 3].map((star) => (
-                <div key={star} className="flex items-center gap-1 cursor-pointer hover:text-blue-600">
+            {/* Ratings */}
+            <div>
+              <h4 className="font-medium text-gray-700 mb-3">Ratings</h4>
+              <div className="flex flex-col gap-2 text-gray-600 text-sm">
+                {[5, 4, 3, 0].map((star) => (
+            <div 
+              key={star} 
+              className={`flex items-center gap-1 cursor-pointer hover:text-blue-600 ${
+                selectedRating === star ? 'text-blue-600 font-medium' : ''
+              }`}
+              onClick={() => setSelectedRating(selectedRating === star ? null : star)}
+            >
+              {star > 0 ? (
+                <>
                   {[...Array(star)].map((_, i) => (
-                    <Star key={i} size={14} fill="#facc15" stroke="none" />
+              <Star key={i} size={14} fill="#facc15" stroke="none" />
                   ))}
                   <span>&nbsp;{star}.0 & up</span>
-                </div>
-              ))}
+                </>
+              ) : (
+                <span>All Ratings</span>
+              )}
             </div>
-          </div>
-
-          {/* Duration */}
-          <div>
-            <h4 className="font-medium text-gray-700 mb-3">Duration</h4>
-            <div className="flex flex-col gap-2 text-gray-600 text-sm">
-              <label><input type="checkbox" className="accent-blue-600" /> 0–1 hour</label>
-              <label><input type="checkbox" className="accent-blue-600" /> 1–3 hours</label>
-              <label><input type="checkbox" className="accent-blue-600" /> 3–6 hours</label>
-              <label><input type="checkbox" className="accent-blue-600" /> 6+ hours</label>
+                ))}
+              </div>
             </div>
-          </div>
-        </aside>
+          </aside>
 
-        {/* 🧩 Main Course Section */}
+          {/* 🧩 Main Course Section */}
         <main className="w-full md:w-3/4">
-          <div className="flex flex-col md:flex-row justify-between items-center mb-6">
-            <p className="text-gray-600 text-sm md:text-base">
+          <div className="flex justify-between items-center mb-6">
+            <p className="text-gray-700 font-medium">
               Showing {filteredCourses.length} results
             </p>
-
-            {/* Sort Dropdown */}
             <select
               value={sortOption}
               onChange={(e) => setSortOption(e.target.value)}

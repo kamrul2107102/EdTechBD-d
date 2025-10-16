@@ -74,11 +74,11 @@ const CourseCard = ({ course }) => {
       className="border border-gray-300 hover:shadow-md rounded-lg overflow-hidden flex flex-col h-full transition-shadow duration-300 bg-white"
     >
       {/* 🖼️ Course Thumbnail (fixed width & height like Udemy) */}
-      <div className="relative w-full aspect-[15/6] bg-gray-100">
+      <div className="relative w-full bg-gray-100">
         <img
           src={course.courseThumbnail || assets.placeholder}
           alt="courseThumbnail"
-          className="absolute inset-0 w-full h-full object-cover rounded-t-lg"
+          className="w-full h-auto object-contain rounded-t-lg"
         />
       </div>
 
