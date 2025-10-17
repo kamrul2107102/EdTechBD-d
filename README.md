@@ -110,21 +110,10 @@ npm run dev
 
 # 🔑 Admin Access
 
-- Use **Clerk** to create a user and assign role **admin**
-- Access admin dashboard: `http://localhost:5173/admin/dashboard`
-  
-| Layer          | Technology               |
-| -------------- | ------------------------ |
-| Frontend       | React, TailwindCSS, Vite |
-| Backend        | Node.js, Express         |
-| Database       | MongoDB, Mongoose        |
-| Authentication | Clerk                    |
-| Storage        | Cloudinary (optional)    |
-| Notifications  | React-Toastify           |
-| Icons          | React-Icons              |
 
-
-# 📌 Notes
+1. Use **Clerk** to create a user
+2. Assign role **admin** in Clerk dashboard
+3. Access admin dashboard: `http://localhost:5173/admin/dashboard`
 
 - Ensure roles (**student, educator, admin**) are correctly assigned in **Clerk**
 - `Purchase.js` tracks enrollments and revenue
@@ -134,3 +123,57 @@ npm run dev
 1. Use **Clerk** to create a user
 2. Assign role **admin** in Clerk dashboard
 3. Access admin dashboard: `http://localhost:5173/admin/dashboard`
+- Ensure roles (**student, educator, admin**) are correctly assigned in **Clerk**
+- `Purchase.js` tracks enrollments and revenue
+- Admin routes are protected with middleware to prevent unauthorized access
+
+```text
+lms/
+├── client/                     # Frontend React application
+│   ├── public/                 # Static assets (images, favicon, etc.)
+│   │   └── index.css           # Global styles
+│   └── src/
+│       ├── components/         # Reusable UI components
+│       │   ├── student/        # Student-specific components
+│       │   ├── educator/       # Educator-specific components
+│       │   ├── admin/          # Admin UI components (cards, tables, modals)
+│       │   └── common/         # Shared UI components across roles
+│       ├── context/
+│       │   └── AppContext.jsx  # Global context (auth, currency, user)
+│       ├── pages/              # Application pages
+│       │   ├── student/        # Student pages
+│       │   ├── educator/       # Educator pages
+│       │   ├── admin/          # Admin pages (AdminDashboard.jsx, ManageUsers.jsx, etc.)
+│       │   └── Home.jsx        # Landing/Home page
+│       ├── utils/
+│       │   └── api.js          # Axios instance, token utilities
+│       ├── App.jsx             # Root component
+│       └── main.jsx            # Entry point for React
+└── server/                     # Backend Node.js application
+    ├── configs/                # Configuration files
+    │   ├── mongodb.js          # MongoDB connection
+    │   ├── cloudinary.js       # Cloud storage configuration
+    │   └── clerk.js            # Clerk configuration (optional)
+    ├── controllers/            # Route controllers (Request handlers)
+    │   ├── adminController.js
+    │   ├── courseController.js
+    │   ├── educatorController.js
+    │   ├── userController.js
+    │   └── webhooks.js         # Webhook handlers (optional)
+    ├── middlewares/
+    │   └── authMiddleware.js   # Route protection, role-based authorization
+    ├── models/                 # Mongoose schemas
+    │   ├── Course.js           # Course schema
+    │   ├── Purchase.js         # Purchase/Enrollment schema
+    │   └── User.js             # Optional if using Clerk
+    ├── routes/                 # Express routes (API routes)
+    │   ├── adminRoutes.js
+    │   ├── courseRoute.js
+    │   ├── educatorRoutes.js
+    │   ├── userRoutes.js
+    │   └── index.js            # Combine all routes (optional)
+    ├── utils/
+    │   └── helpers.js          # Helper functions
+    ├── index.js                # Main server entry point
+    ├── .env                    # Environment variables
+    └── package.json            # Backend dependencies and scripts
