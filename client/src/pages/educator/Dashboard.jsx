@@ -15,10 +15,9 @@ import {
   YAxis,
   CartesianGrid,
   Tooltip,
-  Legend,
   ResponsiveContainer,
 } from "recharts";
-import { FaUserGraduate, FaMoneyBillWave, FaBookOpen, FaTrendingUp } from "react-icons/fa";
+import { FaUserGraduate, FaMoneyBillWave, FaBookOpen, FaArrowUp } from "react-icons/fa";
 
 const Dashboard = () => {
   const { currency, backendUrl, getToken, isEducator } = useContext(AppContext);
@@ -114,7 +113,7 @@ const Dashboard = () => {
                     {dashboardData.enrolledStudentsData.length}
                   </p>
                   <div className="flex items-center gap-1 text-xs text-green-600">
-                    <FaTrendingUp className="w-3 h-3" />
+                    <FaArrowUp className="w-3 h-3" />
                     <span className="font-medium">+12% from last month</span>
                   </div>
                 </div>
@@ -138,7 +137,7 @@ const Dashboard = () => {
                     {currency}{dashboardData.totalEarnings}
                   </p>
                   <div className="flex items-center gap-1 text-xs text-green-600">
-                    <FaTrendingUp className="w-3 h-3" />
+                    <FaArrowUp className="w-3 h-3" />
                     <span className="font-medium">+8% from last month</span>
                   </div>
                 </div>
@@ -296,12 +295,11 @@ const Dashboard = () => {
                   cy="50%"
                   outerRadius={90}
                   dataKey="value"
-                  label={({ name, percent }) =>
+                  label={({ percent }) =>
                     `${(percent * 100).toFixed(0)}%`
                   }
-                  labelLine={false}
                 >
-                  {generateCourseDistribution().map((entry, index) => (
+                  {generateCourseDistribution().map((_, index) => (
                     <Cell
                       key={index}
                       fill={COLORS[index % COLORS.length]}
