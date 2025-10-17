@@ -11,6 +11,7 @@ import {
   Cpu,
   BookOpen,
   Star,
+  SlidersHorizontal,
 } from "lucide-react";
 
 const CoursesList = () => {
@@ -100,119 +101,146 @@ const CoursesList = () => {
   };
 
   return (
-    <>
-      {/* Sticky Search */}
-      <div className="sticky top-[60px] z-40 bg-gray-50 py-2 shadow-sm flex justify-center">
-  <div className="w-full max-w-xl px-4">
-    <SearchBar data={input} />
-  </div>
-</div>
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-blue-50">
+      {/* Sticky Search 
+      <div className="sticky top-[60px] z-40 bg-white/90 backdrop-blur-md py-4 shadow-md border-b border-gray-200">
+        <div className="w-full max-w-xl mx-auto px-4">
+          <SearchBar data={input} />
+        </div>
+      </div>*/}
 
-
-      <div className="flex flex-col md:flex-row pr-6 py-10 gap-8">
-        {/* 🧩 Sticky Filter Sidebar */}
-          <aside
-          className="nline-block md:sticky md:top-[110px] self-start h-[calc(100vh-120px)] 
-             overflow-y-auto border-r pr-2 pl-2 scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-transparent"
-        >
-
-            <h3 className="text-xl font-semibold mb-4">Filter by</h3>
-
-            {/* Categories */}
-            <div className="mb-6">
-              <h4 className="font-medium text-gray-700 mb-3">Categories</h4>
-              <div className="flex flex-col gap-2">
-                {categories.map((cat) => (
-            <label
-              key={cat.id}
-              className="flex items-center gap-2 text-gray-600 hover:text-blue-600 cursor-pointer"
-            >
-              <input
-                type="checkbox"
-                checked={selectedCategories.includes(cat.name)}
-                onChange={() => handleCategoryChange(cat.name)}
-                className="accent-blue-600"
-              />
-              <div className="flex items-center gap-2 text-sm">
-                {cat.icon} {cat.name}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <div className="flex flex-col lg:flex-row gap-8">
+          {/* 🧩 Sticky Filter Sidebar */}
+          <aside className="lg:sticky lg:top-[130px] self-start w-full lg:w-72 shrink-0">
+            <div className="bg-white rounded-xl shadow-lg border border-gray-200 p-6 h-[calc(100vh-150px)] overflow-y-auto scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-transparent">
+              <div className="flex items-center gap-2 mb-6">
+                <SlidersHorizontal size={20} className="text-blue-600" />
+                <h3 className="text-xl font-bold text-gray-800">Filters</h3>
               </div>
-            </label>
-                ))}
-              </div>
-            </div>
 
-            {/* Ratings */}
-            <div>
-              <h4 className="font-medium text-gray-700 mb-3">Ratings</h4>
-              <div className="flex flex-col gap-2 text-gray-600 text-sm">
-                {[5, 4, 3, 0].map((star) => (
-            <div 
-              key={star} 
-              className={`flex items-center gap-1 cursor-pointer hover:text-blue-600 ${
-                selectedRating === star ? 'text-blue-600 font-medium' : ''
-              }`}
-              onClick={() => setSelectedRating(selectedRating === star ? null : star)}
-            >
-              {star > 0 ? (
-                <>
-                  {[...Array(star)].map((_, i) => (
-              <Star key={i} size={14} fill="#facc15" stroke="none" />
+              {/* Categories */}
+              <div className="mb-8">
+                <h4 className="font-semibold text-gray-800 mb-4 text-sm uppercase tracking-wide">
+                  Categories
+                </h4>
+                <div className="flex flex-col gap-3">
+                  {categories.map((cat) => (
+                    <label
+                      key={cat.id}
+                      className={`flex items-center gap-3 px-3 py-2.5 rounded-lg cursor-pointer transition-all ${
+                        selectedCategories.includes(cat.name)
+                          ? "bg-blue-50 text-blue-700 border border-blue-200"
+                          : "hover:bg-gray-50 text-gray-700 border border-transparent"
+                      }`}
+                    >
+                      <input
+                        type="checkbox"
+                        checked={selectedCategories.includes(cat.name)}
+                        onChange={() => handleCategoryChange(cat.name)}
+                        className="w-4 h-4 accent-blue-600 rounded"
+                      />
+                      <div className="flex items-center gap-2 text-sm font-medium">
+                        {cat.icon} {cat.name}
+                      </div>
+                    </label>
                   ))}
-                  <span>&nbsp;{star}.0 & up</span>
-                </>
-              ) : (
-                <span>All Ratings</span>
-              )}
-            </div>
-                ))}
+                </div>
+              </div>
+
+              {/* Ratings */}
+              <div>
+                <h4 className="font-semibold text-gray-800 mb-4 text-sm uppercase tracking-wide">
+                  Ratings
+                </h4>
+                <div className="flex flex-col gap-2">
+                  {[5, 4, 3, 0].map((star) => (
+                    <div
+                      key={star}
+                      className={`flex items-center gap-2 px-3 py-2.5 rounded-lg cursor-pointer transition-all ${
+                        selectedRating === star
+                          ? "bg-blue-50 text-blue-700 border border-blue-200 font-semibold"
+                          : "hover:bg-gray-50 text-gray-700 border border-transparent"
+                      }`}
+                      onClick={() => setSelectedRating(selectedRating === star ? null : star)}
+                    >
+                      {star > 0 ? (
+                        <>
+                          <div className="flex">
+                            {[...Array(star)].map((_, i) => (
+                              <Star key={i} size={16} fill="#facc15" stroke="#facc15" />
+                            ))}
+                          </div>
+                          <span className="text-sm">{star}.0 & up</span>
+                        </>
+                      ) : (
+                        <span className="text-sm font-medium">All Ratings</span>
+                      )}
+                    </div>
+                  ))}
+                </div>
               </div>
             </div>
           </aside>
 
           {/* 🧩 Main Course Section */}
-        <main className="w-full md:w-3/4">
-          <div className="flex justify-between items-center mb-6">
-            <p className="text-gray-700 font-medium">
-              Showing {filteredCourses.length} results
-            </p>
-            <select
-              value={sortOption}
-              onChange={(e) => setSortOption(e.target.value)}
-              className="border px-3 py-2 rounded-md text-gray-700 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
-            >
-              <option value="default">Sort by: Featured</option>
-              <option value="mostPopular">Most Popular</option>
-              <option value="newest">Newest</option>
-              <option value="mostRated">Highest Rated</option>
-              <option value="lowToHigh">Price: Low to High</option>
-              <option value="highToLow">Price: High to Low</option>
-            </select>
-          </div>
-
-          {/* Course List */}
-          <div className="flex flex-col divide-y divide-gray-200">
-            {filteredCourses.length > 0 ? (
-              filteredCourses.map((course, index) => (
-                <div
-                  key={index}
-                  className="py-6 hover:bg-gray-50 transition-all cursor-pointer"
-                >
-                  <CourseCard course={course} />
+          <main className="flex-1 min-w-0">
+            {/* Header */}
+            <div className="bg-white rounded-xl shadow-md border border-gray-200 p-6 mb-6">
+              <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+                <div>
+                  <h2 className="text-2xl font-bold text-gray-800 mb-1">
+                    {input ? `Results for "${input}"` : "All Courses"}
+                  </h2>
+                  <p className="text-gray-600 text-sm">
+                    Showing <span className="font-semibold text-blue-600">{filteredCourses.length}</span> courses
+                  </p>
                 </div>
-              ))
-            ) : (
-              <p className="text-center text-gray-500 py-10">
-                No courses found matching your filters.
-              </p>
-            )}
-          </div>
-        </main>
-      </div>
+                <select
+                  value={sortOption}
+                  onChange={(e) => setSortOption(e.target.value)}
+                  className="px-4 py-2.5 rounded-lg border-2 border-gray-200 text-gray-700 text-sm font-medium bg-white hover:border-blue-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all cursor-pointer"
+                >
+                  <option value="default">⭐ Featured</option>
+                  <option value="mostPopular">🔥 Most Popular</option>
+                  <option value="newest">🆕 Newest</option>
+                  <option value="mostRated">⭐ Highest Rated</option>
+                  <option value="lowToHigh">💰 Price: Low to High</option>
+                  <option value="highToLow">💎 Price: High to Low</option>
+                </select>
+              </div>
+            </div>
 
-    </>
+            {/* Course List */}
+            <div className="space-y-6">
+              {filteredCourses.length > 0 ? (
+                filteredCourses.map((course, index) => (
+                  <div
+                    key={index}
+                    className="bg-white rounded-xl shadow-md border border-gray-200 p-6 hover:shadow-xl hover:border-blue-300 transition-all duration-300 transform hover:-translate-y-1"
+                  >
+                    <CourseCard course={course} />
+                  </div>
+                ))
+              ) : (
+                <div className="bg-white rounded-xl shadow-md border border-gray-200 p-12 text-center">
+                  <div className="text-gray-400 mb-4">
+                    <BookOpen size={48} className="mx-auto" />
+                  </div>
+                  <h3 className="text-xl font-semibold text-gray-800 mb-2">
+                    No courses found
+                  </h3>
+                  <p className="text-gray-600">
+                    Try adjusting your filters or search term
+                  </p>
+                </div>
+              )}
+            </div>
+          </main>
+        </div>
+      </div>
+    </div>
   );
 };
 
 export default CoursesList;
-
-
