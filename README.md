@@ -124,6 +124,7 @@ lms/
     │ApproveEducators.jsx│
     └───────────────────┘
 
+```
 
 # ⚙️ Features
 
@@ -164,6 +165,8 @@ CLERK_SECRET_KEY=<Your Clerk Secret>
 cd client
 npm install
 npm run dev
+```
+
 ## Frontend runs on: http://localhost:5173
 
 ## Backend runs on: http://localhost:5000
@@ -172,11 +175,7 @@ npm run dev
 # 🔑 Admin Access
 
 - Use **Clerk** to create a user and assign role **admin**
-- Access admin dashboard:  
-  `http://localhost:5173/admin/dashboard`
-
-
-  ## 🛠 Tech Stack
+- Access admin dashboard: `http://localhost:5173/admin/dashboard`
   
 | Layer          | Technology               |
 | -------------- | ------------------------ |
