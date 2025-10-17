@@ -123,7 +123,7 @@ const CoursesSection = () => {
           <Link
             to={"/course-list"}
             onClick={() => scrollTo(0, 0)}
-            className="inline-block text-white bg-gray-800 hover:bg-gray-900 px-12 py-4 rounded-lg font-semibold shadow-md hover:shadow-lg transition-all duration-300 transform hover:-translate-y-0.5"
+            className="inline-block text-white bg-gray-800 hover:bg-gray-900 px-12 py-3 rounded-lg font-semibold shadow-md hover:shadow-lg transition-all duration-300 transform hover:-translate-y-0.5"
           >
             Show All Courses
           </Link>

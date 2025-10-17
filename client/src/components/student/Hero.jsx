@@ -45,13 +45,15 @@ const Hero = () => {
   return (
     <div className="relative w-full min-h-[85vh] md:min-h-[90vh] bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50">
       {/* Hero Image */}
-      <div className="w-full h-48 md:h-64 overflow-hidden">
-        <img
-          src="https://img-c.udemycdn.com/notices/home_carousel_slide/image/c384c746-4a80-4e9f-8582-b0067704540b.jpg"
-          alt="Hero Banner"
-          className="w-full h-full object-cover"
-        />
-      </div>
+      <div className="w-full h-auto">
+  <img
+    src="https://img-c.udemycdn.com/notices/home_carousel_slide/image/c384c746-4a80-4e9f-8582-b0067704540b.jpg"
+    alt="Hero Banner"
+    className="w-full h-auto object-contain"
+  />
+</div>
+
+
 
       {/* Decorative background elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">

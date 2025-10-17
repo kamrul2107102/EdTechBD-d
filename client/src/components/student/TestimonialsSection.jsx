@@ -36,7 +36,7 @@ const TestimonialsSection = () => {
   };
 
   return (
-    <div id="testimonials" className="py-20 px-4 md:px-16 bg-gradient-to-b from-white to-gray-50">
+    <div id="testimonials" className="py-10 px-4 md:px-16 bg-gradient-to-b from-white to-gray-50">
       <div className="max-w-7xl mx-auto">
         {/* Section Header */}
         <div className="text-center mb-16">
@@ -83,12 +83,12 @@ const TestimonialsSection = () => {
               ))}
             </div>
 
-            {/* Feedback */}
-            <p className="text-gray-700 text-xl md:text-2xl text-center leading-relaxed mb-8 max-w-4xl mx-auto">
-              "{dummyTestimonial[currentIndex].feedback}"
-            </p>
+           { /* Feedback */}
+                  <p className="text-gray-700 text-lg md:text-xl text-center leading-relaxed mb-8 max-w-4xl mx-auto font-normal italic">
+                    "{dummyTestimonial[currentIndex].feedback}"
+                  </p>
 
-            {/* Profile */}
+                  {/* Profile */}
             <div className="flex items-center justify-center gap-4">
               <img
                 className="h-16 w-16 rounded-full object-cover border-4 border-blue-100"
