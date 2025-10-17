@@ -1,50 +1,50 @@
-LMS MERN WEBSITE 
-vercel: https://course-taupe-alpha.vercel.app/
 # LMS MERN WEBSITE
 
-[vercel: https://course-taupe-alpha.vercel.app/](https://course-taupe-alpha.vercel.app/)
+🔗 **Live Demo**: [https://course-taupe-alpha.vercel.app/](https://course-taupe-alpha.vercel.app/)
 
-# LMS - Learning Management System
-
-A modern Learning Management System (LMS) built with **React** (frontend) and **Node.js/Express** (backend), integrated with **MongoDB** and **Clerk** for user authentication. The platform supports **Students, Educators, and Admins** with role-based access and dashboard functionalities.
-
----
-
-## 🎨 Design & UI Structure
-
-The application is divided into three main user roles with separate dashboards:
-
-### 1. Student
-- Browse & enroll in courses
-- View enrolled courses
-- Access lectures (video/text)
-- View categories, deals, and blog posts
-- Audit courses
-
-### 2. Educator
-- Create and manage courses
-- Track student enrollments
-- Review audited courses
-- Dashboard for earnings and statistics
-
-### 3. Admin
-- Full control over platform data
-- Dashboard showing users, courses, and earnings
-- Approve educator requests
-- Manage users and courses
-- Role-based access using **Clerk**
+![License](https://img.shields.io/badge/license-MIT-blue.svg)
+![Node](https://img.shields.io/badge/node-%3E%3D16.0.0-brightgreen)
+![React](https://img.shields.io/badge/react-18.x-61dafb)
 
 ---
 
-## 🗂 Project Structure
+## 📋 Table of Contents
 
-This document outlines the directory structure of the project, including both the frontend (React) and backend (Node.js/Express) components.
+- [Overview](#-overview)
+- [Features](#️-features)
+- [Architecture](#-architecture)
+- [SDLC & Development Process](#-sdlc--development-process)
+- [Project Structure](#-project-structure)
+- [Tech Stack](#-tech-stack)
+- [Installation](#-installation)
+- [API Documentation](#-api-documentation)
+- [Deployment](#-deployment)
+- [Contributing](#-contributing)
+- [License](#-license)
 
-```text
-lms/
-├── client/                     # Frontend React application
-│   ├── public/                 # Static assets (images, favicon, etc.)
-│   │   └── index.css           # Global styles
+---
+
+## 🎯 Overview
+
+A comprehensive **Learning Management System (LMS)** built with the MERN stack, designed to facilitate online education through a modern, scalable platform. The system supports three distinct user roles—**Students**, **Educators**, and **Admins**—each with tailored dashboards and functionalities.
+
+### Key Highlights
+- 🎓 Multi-role authentication and authorization
+- 📚 Course creation and management
+- 💳 Enrollment and purchase tracking
+- 📊 Analytics dashboards for all user types
+- 🎥 Video and text-based learning content
+- 📱 Responsive design for all devices
+
+---
+
+## ⚙️ Features
+
+### 👩‍🎓 Student Features
+- **Course Discovery**: Browse courses by category, search, and filter
+- **Enrollment Management**: Enroll in courses and track progress
+- **Learning Interface**: Access video/text lectures with progress tracking
+- **Course
 │   └── src/
 │       ├── components/         # Reusable UI components
 │       │   ├── student/        # Student-specific components
