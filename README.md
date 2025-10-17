@@ -38,7 +38,6 @@ A comprehensive **Learning Management System (LMS)** built with the MERN stack, 
 
 ---
 
-```markdown
 ## ⚙️ Features
 
 ### 👩‍🎓 Student Features
@@ -60,72 +59,55 @@ A comprehensive **Learning Management System (LMS)** built with the MERN stack, 
 - **Content Moderation**: Manage and remove courses
 - **Role Assignment**: Control platform permissions
 
-```
-
-# ⚙️ Features
-
-## 👩‍🎓 Student
-- **Course browsing & search**
-- **Enrollment & progress tracking**
-- **Video/text lecture player**
-- **Audit page** to preview courses
-- **Categories, deals, and blog pages**
-
-## 👨‍🏫 Educator
-- **Add/Edit/Delete courses**
-- **View enrolled students**
-- **Audit approved courses**
-- **Educator dashboard** for revenue & stats
-
-## 🛡 Admin
-- **Admin dashboard**: total users, total courses, total earnings
-- **Approve pending educators**
-- **Delete users & courses**
-- **Manage all platform content**
-
 ---
 
-# 🚀 Installation
+## 🚀 Installation
 
----
+### 1️⃣ Backend
 
-## 1️⃣ Backend
-
-### Configure `.env`
+#### Configure `.env`
 
 ```env
 PORT=5000
 MONGO_URI=<Your MongoDB URI>
 CLERK_SECRET_KEY=<Your Clerk Secret>
+```
 
+#### Install dependencies and run
+
+```bash
+cd server
+npm install
+npm start
+```
+
+### 2️⃣ Frontend
+
+```bash
 cd client
 npm install
 npm run dev
 ```
 
-## Frontend runs on: http://localhost:5173
+- **Frontend runs on**: http://localhost:5173
+- **Backend runs on**: http://localhost:5000
 
-## Backend runs on: http://localhost:5000
+---
 
-
-# 🔑 Admin Access
-
+## 🔑 Admin Access
 
 1. Use **Clerk** to create a user
 2. Assign role **admin** in Clerk dashboard
 3. Access admin dashboard: `http://localhost:5173/admin/dashboard`
 
+**Notes:**
 - Ensure roles (**student, educator, admin**) are correctly assigned in **Clerk**
 - `Purchase.js` tracks enrollments and revenue
 - Admin routes are protected with middleware to prevent unauthorized access
 
-```markdown
-1. Use **Clerk** to create a user
-2. Assign role **admin** in Clerk dashboard
-3. Access admin dashboard: `http://localhost:5173/admin/dashboard`
-- Ensure roles (**student, educator, admin**) are correctly assigned in **Clerk**
-- `Purchase.js` tracks enrollments and revenue
-- Admin routes are protected with middleware to prevent unauthorized access
+---
+
+## 📁 Project Structure
 
 ```text
 lms/
@@ -177,3 +159,5 @@ lms/
     ├── index.js                # Main server entry point
     ├── .env                    # Environment variables
     └── package.json            # Backend dependencies and scripts
+```
+
