@@ -40,82 +40,65 @@ This document outlines the directory structure of the project, including both th
 
 ---
 
-## Client (Frontend)
+# Frontend/Client (React) Project Structure
 
-The frontend is built with **React** and organized for **student, educator, and admin interfaces**.
 client/
-├── public/ # Static assets (images, favicon, etc.)
+├── public/                     # Static assets (images, favicon, etc.)
 └── src/
-├── components/ # Reusable UI components
-│ ├── student/ # Student-specific components
-│ ├── educator/ # Educator-specific components
-│ ├── admin/ # Admin UI components (cards, tables, modals)
-│ └── common/ # Shared UI components across roles
-│
-├── context/
-│ └── AppContext.jsx # Global context (auth, currency, user)
-│
-├── pages/ # Application pages
-│ ├── student/ # Student pages
-│ ├── educator/ # Educator pages
-│ ├── admin/ # Admin pages
-│ │ ├── AdminDashboard.jsx
-│ │ ├── ManageUsers.jsx
-│ │ ├── ManageCourses.jsx
-│ │ └── ApproveEducators.jsx
-│ └── Home.jsx # Landing/Home page
-│
-├── utils/
-│ └── api.js # Axios instance, token utilities
-│
-├── App.jsx # Root component
-├── main.jsx # Entry point for React
-└── index.css # Global styles
+    ├── components/             # Reusable UI components
+    │   ├── student/            # Student-specific components
+    │   ├── educator/           # Educator-specific components
+    │   ├── admin/              # Admin UI components (cards, tables, modals)
+    │   └── common/             # Shared UI components across roles
+    ├── context/
+    │   └── AppContext.jsx      # Global context (auth, currency, user)
+    ├── pages/                  # Application pages
+    │   ├── student/            # Student pages
+    │   ├── educator/           # Educator pages
+    │   ├── admin/              # Admin pages
+    │   │   ├── AdminDashboard.jsx
+    │   │   ├── ManageUsers.jsx
+    │   │   ├── ManageCourses.jsx
+    │   │   └── ApproveEducators.jsx
+    │   └── Home.jsx            # Landing/Home page
+    ├── utils/
+    │   └── api.js              # Axios instance, token utilities
+    ├── App.jsx                 # Root component
+    ├── main.jsx                # Entry point for React
+    └── index.css               # Global styles
 
 
----
-
-## Server (Backend)
-
-The backend is built with **Node.js and Express**, using **MongoDB** as the database.
-
-
-The backend is built with **Node.js and Express**, using **MongoDB** as the database.
+# Backend (Node.js/Express) Project Structure
 
 server/
-├── configs/ # Configuration files
-│ ├── mongodb.js # MongoDB connection
-│ ├── cloudinary.js # Cloud storage configuration
-│ └── clerk.js # Clerk configuration (optional)
-│
-├── controllers/ # Route controllers
-│ ├── adminController.js # Admin dashboard, approve/delete functionality
-│ ├── courseController.js # Course-related operations
-│ ├── educatorController.js # Educator-related operations
-│ ├── userController.js # User operations
-│ └── webhooks.js # Webhook handlers (optional)
-│
+├── configs/                    # Configuration files
+│   ├── mongodb.js              # MongoDB connection
+│   ├── cloudinary.js           # Cloud storage configuration
+│   └── clerk.js                # Clerk configuration (optional)
+├── controllers/                # Route controllers
+│   ├── adminController.js      # Admin dashboard, approve/delete functionality
+│   ├── courseController.js     # Course-related operations
+│   ├── educatorController.js   # Educator-related operations
+│   ├── userController.js       # User operations
+│   └── webhooks.js             # Webhook handlers (optional)
 ├── middlewares/
-│ └── authMiddleware.js # Route protection, role-based authorization
-│
-├── models/ # Mongoose schemas
-│ ├── Course.js # Course schema
-│ ├── Purchase.js # Purchase/Enrollment schema
-│ └── User.js # Optional if using Clerk
-│
-├── routes/ # Express routes
-│ ├── adminRoutes.js # Admin APIs
-│ ├── courseRoute.js # Course APIs
-│ ├── educatorRoutes.js # Educator APIs
-│ ├── userRoutes.js # User APIs
-│ └── index.js (optional) # Combine all routes
-│
+│   └── authMiddleware.js       # Route protection, role-based authorization
+├── models/                     # Mongoose schemas
+│   ├── Course.js               # Course schema
+│   ├── Purchase.js             # Purchase/Enrollment schema
+│   └── User.js                 # Optional if using Clerk
+├── routes/                     # Express routes
+│   ├── adminRoutes.js          # Admin APIs
+│   ├── courseRoute.js          # Course APIs
+│   ├── educatorRoutes.js       # Educator APIs
+│   ├── userRoutes.js           # User APIs
+│   └── index.js (optional)     # Combine all routes
 ├── utils/
-│ └── helpers.js # Helper functions
-│
-├── index.js # Main server entry point
-├── .env # Environment variables
-└── package.json # Backend dependencies and scripts
+│   └── helpers.js              # Helper functions
+├── index.js                    # Main server entry point
+├── .env                        # Environment variables
+└── package.json                # Backend dependencies and scripts
+
 
 
 ## 🔗 Visual Diagram
