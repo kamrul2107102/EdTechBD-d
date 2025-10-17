@@ -22,13 +22,13 @@ const UserTable = ({ users, handleDeleteUser }) => {
         </thead>
         <tbody>
           {users.map((u) => (
-            <tr key={u.id} className="text-center">
+            <tr key={u._id} className="text-center">
               <td className="border p-2">{u.name}</td>
               <td className="border p-2">{u.email}</td>
               <td className="border p-2">{u.role}</td>
               <td className="border p-2">
                 <button
-                  onClick={() => handleDeleteUser(u.id)}
+                  onClick={() => handleDeleteUser(u._id)}
                   className="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600"
                 >
                   Delete
