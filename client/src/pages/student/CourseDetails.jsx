@@ -227,9 +227,10 @@ export default function CourseDetails() {
                 dangerouslySetInnerHTML={{ __html: (courseData.courseDescription || "").slice(0, 200) + "..." }}
               />
 
-              {/* Stats Bar */}
-              <div className="flex flex-wrap items-center gap-6 pt-4">
-                <div className="flex items-center gap-2">
+              {/* Stats Section */}
+              <div className="space-y-3 pt-2">
+                {/* Rating */}
+                <div className="flex items-center gap-3">
                   <div className="flex">
                     {[...Array(5)].map((_, i) => (
                       <svg key={i} className={`w-5 h-5 ${i < Math.floor(rating) ? 'text-yellow-400' : 'text-gray-600'}`} fill="currentColor" viewBox="0 0 20 20">
@@ -237,138 +238,39 @@ export default function CourseDetails() {
                       </svg>
                     ))}
                   </div>
-                  <span className="font-semibold">{rating.toFixed(1)}</span>
-                  <span className="text-gray-400">({safeLength(courseData.courseRatings)} reviews)</span>
+                  <span className="font-semibold text-white">{rating.toFixed(1)}</span>
+                  <span className="text-gray-300">({safeLength(courseData.courseRatings)} reviews)</span>
                 </div>
 
-                <div className="h-6 w-px bg-gray-600"></div>
-
-                <div className="flex items-center gap-2">
-                  <svg className="w-5 h-5 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                {/* Students */}
+                <div className="flex items-center gap-3">
+                  <svg className="w-5 h-5 text-purple-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
                   </svg>
-                  <span className="font-medium">{safeLength(courseData.enrolledStudents).toLocaleString()} students</span>
+                  <span className="font-medium text-white">{safeLength(courseData.enrolledStudents).toLocaleString()} students</span>
                 </div>
 
-                <div className="h-6 w-px bg-gray-600"></div>
-
-                <div className="flex items-center gap-2">
-                  <svg className="w-5 h-5 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                {/* Duration */}
+                <div className="flex items-center gap-3">
+                  <svg className="w-5 h-5 text-purple-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                   </svg>
-                  <span>{calculateCourseDuration ? calculateCourseDuration(courseData) : "-"}</span>
+                  <span className="font-medium text-white">{calculateCourseDuration ? calculateCourseDuration(courseData) : "-"}</span>
                 </div>
-              </div>
 
-              <div className="flex items-center gap-2 text-sm">
-                <span className="text-gray-300">Created by</span>
-                <span className="font-semibold text-purple-300">{courseData.educator?.name || courseData.educator?.firstName || "Unknown"}</span>
+                {/* Creator */}
+                <div className="flex items-center gap-3">
+                  <svg className="w-5 h-5 text-purple-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                  </svg>
+                  <span className="text-gray-300">Created by</span>
+                  <span className="font-semibold text-white">{courseData.educator?.name || courseData.educator?.firstName || "Unknown"}</span>
+                </div>
               </div>
             </div>
 
             {/* Right: Sticky Card Preview (Mobile shows below) */}
             <div className="md:sticky md:top-24">
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* Main Content */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="grid md:grid-cols-3 gap-8">
-          {/* Left Column - Course Content */}
-          <div className="md:col-span-2 space-y-8">
-            
-            {/* Course Structure */}
-            <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6 md:p-8">
-              <h2 className="text-2xl font-bold text-gray-900 mb-6 flex items-center gap-2">
-                <svg className="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
-                </svg>
-                Course Curriculum
-              </h2>
-
-              <div className="space-y-3">
-                {Array.isArray(courseData.courseContent) && courseData.courseContent.length > 0 ? (
-                  courseData.courseContent.map((chapter, index) => (
-                    <div key={chapter._id || index}>
-                      <div
-                        className="flex items-center justify-between px-5 py-4 cursor-pointer bg-gray-50 hover:bg-gray-100 transition-colors"
-                        onClick={() => toggleSection(index)}
-                      >
-                        <div className="flex items-center gap-3 flex-1">
-                          <div className={`transform transition-transform duration-200 ${openSections[index] ? "rotate-180" : ""}`}>
-                            <svg className="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
-                            </svg>
-                          </div>
-                          <p className="font-semibold text-gray-800">{chapter.chapterTitle || "Untitled chapter"}</p>
-                        </div>
-
-                        <div className="flex items-center gap-4 text-sm text-gray-600">
-                          <span className="hidden sm:inline">{safeLength(chapter.chapterContent)} lectures</span>
-                          <span className="font-medium">{calculateChapterTime ? calculateChapterTime(chapter) : "-"}</span>
-                        </div>
-                      </div>
-
-                      <div className={`transition-all duration-300 ${openSections[index] ? "max-h-screen" : "max-h-0"} overflow-hidden`}>
-                        <div className="bg-white px-5 py-3 border-t border-gray-200">
-                          {Array.isArray(chapter.chapterContent) && chapter.chapterContent.length > 0 ? (
-                            <ul className="space-y-2">
-                              {chapter.chapterContent.map((lecture, i) => (
-                                <li key={lecture.lectureId || i} className="flex items-center justify-between py-3 hover:bg-gray-50 rounded px-3 -mx-3">
-                                  <div className="flex items-center gap-3 flex-1">
-                                    <svg className="w-4 h-4 text-purple-600 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                                      <path d="M6.3 2.841A1.5 1.5 0 004 4.11V15.89a1.5 1.5 0 002.3 1.269l9.344-5.89a1.5 1.5 0 000-2.538L6.3 2.84z" />
-                                    </svg>
-                                    <span className="text-sm text-gray-700">{lecture.lectureTitle || "Untitled lecture"}</span>
-                                  </div>
-                                  <div className="flex items-center gap-3">
-                                    {lecture.isPreviewFree && (
-                                      <button
-                                        onClick={() => handlePreviewClick(lecture)}
-                                        className="text-xs font-medium text-purple-600 hover:text-purple-700 underline"
-                                      >
-                                        Preview
-                                      </button>
-                                    )}
-                                    <span className="text-xs text-gray-500 font-medium whitespace-nowrap">
-                                      {humanizeDuration((lecture.lectureDuration || 0) * 60 * 1000, { units: ["h", "m"] })}
-                                    </span>
-                                  </div>
-                                </li>
-                              ))}
-                            </ul>
-                          ) : (
-                            <p className="py-4 text-gray-500 text-sm">No lectures available</p>
-                          )}
-                        </div>
-                      </div>
-                    </div>
-                  ))
-                ) : (
-                  <p className="text-gray-600 text-center py-8">No course structure available.</p>
-                )}
-              </div>
-            </div>
-
-            {/* Course Description */}
-            <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6 md:p-8">
-              <h3 className="text-2xl font-bold text-gray-900 mb-4 flex items-center gap-2">
-                <svg className="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
-                About This Course
-              </h3>
-              <div className="prose prose-sm md:prose max-w-none text-gray-700 leading-relaxed"
-                dangerouslySetInnerHTML={{ __html: courseData.courseDescription || "" }}
-              />
-            </div>
-          </div>
-
-          {/* Right Column - Sticky Pricing Card */}
-          <div className="md:col-span-1">
-            <div className="sticky top-24">
               <div className="bg-white rounded-xl shadow-xl border border-gray-200 overflow-hidden">
                 {/* Video/Thumbnail */}
                 <div className="relative">
@@ -491,51 +393,152 @@ export default function CourseDetails() {
                     )}
                   </div>
 
-                  {/* Includes Section */}
-                  <div className="pt-4 border-t border-gray-200">
-                    <h4 className="font-semibold text-gray-900 mb-3 flex items-center gap-2">
-                      <svg className="w-5 h-5 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
-                      </svg>
-                      This course includes:
-                    </h4>
-                    <ul className="space-y-2 text-sm text-gray-600">
-                      <li className="flex items-start gap-2">
-                        <svg className="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                          <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                        </svg>
-                        <span>Lifetime access with free updates</span>
-                      </li>
-                      <li className="flex items-start gap-2">
-                        <svg className="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                          <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                        </svg>
-                        <span>Interactive quizzes & assignments</span>
-                      </li>
-                      <li className="flex items-start gap-2">
-                        <svg className="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                          <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                        </svg>
-                        <span>Downloadable resources</span>
-                      </li>
-                      <li className="flex items-start gap-2">
-                        <svg className="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                          <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                        </svg>
-                        <span>Certificate of completion</span>
-                      </li>
-                      <li className="flex items-start gap-2">
-                        <svg className="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                          <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                        </svg>
-                        <span>Step-by-step project guidance</span>
-                      </li>
-                    </ul>
-                  </div>
                 </div>
               </div>
             </div>
           </div>
+        </div>
+      </div>
+
+      {/* Main Content */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div className="max-w-5xl mx-auto">
+          {/* Course Content */}
+          <div className="space-y-8">
+            
+            {/* Course Structure */}
+            <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6 md:p-8">
+              <h2 className="text-2xl font-bold text-gray-900 mb-6 flex items-center gap-2">
+                <svg className="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+                </svg>
+                Course Curriculum
+              </h2>
+
+              <div className="space-y-3">
+                {Array.isArray(courseData.courseContent) && courseData.courseContent.length > 0 ? (
+                  courseData.courseContent.map((chapter, index) => (
+                    <div key={chapter._id || index}>
+                      <div
+                        className="flex items-center justify-between px-5 py-4 cursor-pointer bg-gray-50 hover:bg-gray-100 transition-colors"
+                        onClick={() => toggleSection(index)}
+                      >
+                        <div className="flex items-center gap-3 flex-1">
+                          <div className={`transform transition-transform duration-200 ${openSections[index] ? "rotate-180" : ""}`}>
+                            <svg className="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
+                            </svg>
+                          </div>
+                          <p className="font-semibold text-gray-800">{chapter.chapterTitle || "Untitled chapter"}</p>
+                        </div>
+
+                        <div className="flex items-center gap-4 text-sm text-gray-600">
+                          <span className="hidden sm:inline">{safeLength(chapter.chapterContent)} lectures</span>
+                          <span className="font-medium">{calculateChapterTime ? calculateChapterTime(chapter) : "-"}</span>
+                        </div>
+                      </div>
+
+                      <div className={`transition-all duration-300 ${openSections[index] ? "max-h-screen" : "max-h-0"} overflow-hidden`}>
+                        <div className="bg-white px-5 py-3 border-t border-gray-200">
+                          {Array.isArray(chapter.chapterContent) && chapter.chapterContent.length > 0 ? (
+                            <ul className="space-y-2">
+                              {chapter.chapterContent.map((lecture, i) => (
+                                <li key={lecture.lectureId || i} className="flex items-center justify-between py-3 hover:bg-gray-50 rounded px-3 -mx-3">
+                                  <div className="flex items-center gap-3 flex-1">
+                                    <svg className="w-4 h-4 text-purple-600 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                      <path d="M6.3 2.841A1.5 1.5 0 004 4.11V15.89a1.5 1.5 0 002.3 1.269l9.344-5.89a1.5 1.5 0 000-2.538L6.3 2.84z" />
+                                    </svg>
+                                    <span className="text-sm text-gray-700">{lecture.lectureTitle || "Untitled lecture"}</span>
+                                  </div>
+                                  <div className="flex items-center gap-3">
+                                    {lecture.isPreviewFree && (
+                                      <button
+                                        onClick={() => handlePreviewClick(lecture)}
+                                        className="text-xs font-medium text-purple-600 hover:text-purple-700 underline"
+                                      >
+                                        Preview
+                                      </button>
+                                    )}
+                                    <span className="text-xs text-gray-500 font-medium whitespace-nowrap">
+                                      {humanizeDuration((lecture.lectureDuration || 0) * 60 * 1000, { units: ["h", "m"] })}
+                                    </span>
+                                  </div>
+                                </li>
+                              ))}
+                            </ul>
+                          ) : (
+                            <p className="py-4 text-gray-500 text-sm">No lectures available</p>
+                          )}
+                        </div>
+                      </div>
+                    </div>
+                  ))
+                ) : (
+                  <p className="text-gray-600 text-center py-8">No course structure available.</p>
+                )}
+              </div>
+            </div>
+
+            {/* Course Description & What's Included - Two Column Layout */}
+            <div className="grid md:grid-cols-2 gap-6">
+              {/* Course Description */}
+              <div className="bg-gray-200 rounded-xl shadow-sm border border-gray-200 p-6 md:p-8">
+                <h3 className="text-2xl font-bold text-gray-900 mb-4 flex items-center gap-2">
+                  <svg className="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                  About This Course
+                </h3>
+                <div className="prose prose-sm md:prose max-w-none text-gray-700 leading-relaxed"
+                  dangerouslySetInnerHTML={{ __html: courseData.courseDescription || "" }}
+                />
+              </div>
+
+              {/* What's Included Section */}
+              <div className="bg-gray-200 rounded-xl shadow-sm border border-gray-200 p-6 md:p-8">
+                <h3 className="text-2xl font-bold text-gray-900 mb-6 flex items-center gap-2">
+                  <svg className="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
+                  </svg>
+                  This course includes:
+                </h3>
+                <ul className="space-y-3">
+                  <li className="flex items-start gap-3">
+                    <svg className="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                    </svg>
+                    <span className="text-gray-700">Lifetime access with free updates</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <svg className="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                    </svg>
+                    <span className="text-gray-700">Interactive quizzes & assignments</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <svg className="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                    </svg>
+                    <span className="text-gray-700">Downloadable resources</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <svg className="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                    </svg>
+                    <span className="text-gray-700">Certificate of completion</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <svg className="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                    </svg>
+                    <span className="text-gray-700">Step-by-step project guidance</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+
         </div>
       </div>
 
