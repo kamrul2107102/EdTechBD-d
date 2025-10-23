@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { AppContext } from "../../context/AppContext";
 import SearchBar from "../../components/student/SearchBar";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import CourseCard from "../../components/student/CourseCard";
 import {
   Code,
@@ -12,11 +12,13 @@ import {
   BookOpen,
   Star,
   SlidersHorizontal,
+  GraduationCap,
 } from "lucide-react";
 
 const CoursesList = () => {
   const { allCourses } = useContext(AppContext);
   const { input } = useParams();
+  const navigate = useNavigate();
   const [filteredCourses, setFilteredCourses] = useState([]);
   const [selectedCategories, setSelectedCategories] = useState([]);
   const [sortOption, setSortOption] = useState("default");
@@ -109,10 +111,35 @@ const CoursesList = () => {
         </div>
       </div>*/}
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-0 py-8">
         <div className="flex flex-col lg:flex-row gap-8">
           {/* 🧩 Sticky Filter Sidebar */}
-          <aside className="lg:sticky lg:top-[130px] self-start w-full lg:w-72 shrink-0">
+          <aside className="lg:sticky lg:top-[130px] self-start w-full lg:w-72 shrink-0 lg:ml-0">
+            {/* Free Tutorial Section */}
+            <div className="mb-6 bg-gradient-to-r from-blue-50 via-purple-50 to-cyan-50 rounded-xl shadow-lg border-2 border-blue-200 p-6 text-center">
+              <div className="flex justify-center mb-3">
+                <div className="bg-gradient-to-r from-blue-500 to-purple-600 p-3 rounded-full shadow-lg">
+                  <GraduationCap size={32} className="text-white" />
+                </div>
+              </div>
+              <h3 className="text-lg font-bold text-gray-800 mb-2">
+                Try Our Free Tutorial Course
+              </h3>
+              <p className="text-gray-600 text-sm mb-4">
+                Start your learning journey with our comprehensive free tutorial. Perfect for beginners and those looking to explore new topics!
+              </p>
+              <button
+                onClick={() => navigate('/learn')}
+                className="group relative w-full px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold rounded-lg shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300 overflow-hidden"
+              >
+                <span className="relative z-10 flex items-center gap-2 justify-center">
+                  <GraduationCap size={18} />
+                  Free Tutorial
+                </span>
+                <div className="absolute inset-0 bg-gradient-to-r from-purple-600 to-cyan-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+              </button>
+            </div>
+
             <div className="bg-white rounded-xl shadow-lg border border-gray-200 p-6 h-[calc(100vh-150px)] overflow-y-auto scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-transparent">
               <div className="flex items-center gap-2 mb-6">
                 <SlidersHorizontal size={20} className="text-blue-600" />
@@ -196,18 +223,21 @@ const CoursesList = () => {
                     Showing <span className="font-semibold text-blue-600">{filteredCourses.length}</span> courses
                   </p>
                 </div>
-                <select
-                  value={sortOption}
-                  onChange={(e) => setSortOption(e.target.value)}
-                  className="px-4 py-2.5 rounded-lg border-2 border-gray-200 text-gray-700 text-sm font-medium bg-white hover:border-blue-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all cursor-pointer"
-                >
-                  <option value="default">⭐ Featured</option>
-                  <option value="mostPopular">🔥 Most Popular</option>
-                  <option value="newest">🆕 Newest</option>
-                  <option value="mostRated">⭐ Highest Rated</option>
-                  <option value="lowToHigh">💰 Price: Low to High</option>
-                  <option value="highToLow">💎 Price: High to Low</option>
-                </select>
+                <div className="flex items-center gap-2">
+                  <span className="text-gray-600 text-sm font-medium">Sorted by:</span>
+                  <select
+                    value={sortOption}
+                    onChange={(e) => setSortOption(e.target.value)}
+                    className="px-4 py-2.5 rounded-lg border-2 border-gray-200 text-gray-700 text-sm font-medium bg-white hover:border-blue-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all cursor-pointer"
+                  >
+                    <option value="default">⭐ Featured</option>
+                    <option value="mostPopular">🔥 Most Popular</option>
+                    <option value="newest">🆕 Newest</option>
+                    <option value="mostRated">⭐ Highest Rated</option>
+                    <option value="lowToHigh">💰 Price: Low to High</option>
+                    <option value="highToLow">💎 Price: High to Low</option>
+                  </select>
+                </div>
               </div>
             </div>
 
