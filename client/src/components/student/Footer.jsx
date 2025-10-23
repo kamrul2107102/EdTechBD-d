@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { FaFacebookF, FaTwitter, FaLinkedinIn, FaInstagram } from "react-icons/fa";
+import { FaFacebookF, FaTwitter, FaLinkedinIn, FaInstagram, FaGithub } from "react-icons/fa";
 import { useClerk, useUser } from "@clerk/clerk-react";
 
 const Footer = () => {
@@ -40,10 +40,10 @@ const Footer = () => {
 
   const FooterLogo = () => (
     <div className="flex items-center gap-2 mb-6">
-      <div className="w-10 h-10 bg-gradient-to-br from-blue-600 to-blue-800 rounded-lg flex items-center justify-center">
+      <div className="w-10 h-10 bg-gradient-to-br from-purple-600 to-blue-600 rounded-lg flex items-center justify-center shadow-lg">
         <span className="text-white font-bold text-xl">E</span>
       </div>
-      <span className="text-2xl font-bold bg-gradient-to-r from-blue-400 to-blue-600 bg-clip-text text-transparent">
+      <span className="text-2xl font-bold bg-gradient-to-r from-purple-400 via-blue-400 to-cyan-400 bg-clip-text text-transparent">
         EdTechBd
       </span>
     </div>
@@ -139,16 +139,27 @@ const Footer = () => {
                 Empowering learners worldwide with cutting-edge courses and expert instructors. Transform your career with EdTechBd.
               </p>
               <div className="flex gap-4">
-                <a href="#" className="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-blue-600 transition-all duration-300">
+                <a 
+                  href="https://github.com/kamrul2107102" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="relative group w-10 h-10 bg-gradient-to-br from-gray-700 to-gray-900 rounded-full flex items-center justify-center hover:from-purple-600 hover:to-blue-600 transition-all duration-300 shadow-lg hover:shadow-purple-500/50 hover:scale-110"
+                >
+                  <FaGithub className="text-sm" />
+                  {/* Tooltip */}
+                  <span className="absolute bottom-full mb-2 left-1/2 -translate-x-1/2 px-3 py-1.5 bg-gray-900 text-white text-xs rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap pointer-events-none shadow-xl">
+                    Meet the Developers
+                    <span className="absolute top-full left-1/2 -translate-x-1/2 -mt-1 border-4 border-transparent border-t-gray-900"></span>
+                  </span>
+                </a>
+                <a href="#" className="w-10 h-10 bg-gradient-to-br from-gray-700 to-gray-900 rounded-full flex items-center justify-center hover:from-blue-600 hover:to-blue-700 transition-all duration-300 shadow-lg hover:shadow-blue-500/50 hover:scale-110">
                   <FaFacebookF className="text-sm" />
                 </a>
-                <a href="#" className="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-blue-400 transition-all duration-300">
-                  <FaTwitter className="text-sm" />
-                </a>
-                <a href="#" className="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-blue-700 transition-all duration-300">
+               
+                <a href="#" className="w-10 h-10 bg-gradient-to-br from-gray-700 to-gray-900 rounded-full flex items-center justify-center hover:from-blue-600 hover:to-blue-800 transition-all duration-300 shadow-lg hover:shadow-blue-500/50 hover:scale-110">
                   <FaLinkedinIn className="text-sm" />
                 </a>
-                <a href="#" className="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-pink-600 transition-all duration-300">
+                <a href="#" className="w-10 h-10 bg-gradient-to-br from-gray-700 to-gray-900 rounded-full flex items-center justify-center hover:from-pink-600 hover:to-purple-600 transition-all duration-300 shadow-lg hover:shadow-pink-500/50 hover:scale-110">
                   <FaInstagram className="text-sm" />
                 </a>
               </div>
@@ -157,20 +168,20 @@ const Footer = () => {
             <div>
               <h3 className="font-semibold text-lg mb-6 text-white">Company</h3>
               <ul className="space-y-3">
-                <li><a href="#" className="text-gray-400 hover:text-orange-500 transition-colors duration-200">Home</a></li>
-                <li><a href="#" className="text-gray-400 hover:text-orange-500 transition-colors duration-200">About Us</a></li>
-                <li><a href="#" className="text-gray-400 hover:text-orange-500 transition-colors duration-200">Contact Us</a></li>
-                <li><a href="#" className="text-gray-400 hover:text-orange-500 transition-colors duration-200">Privacy Policy</a></li>
+                <li><a href="#" className="text-gray-400 hover:text-purple-400 transition-colors duration-200">Home</a></li>
+                <li><a href="https://github.com/kamrul2107102" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-purple-400 transition-colors duration-200">About Us</a></li>
+                <li><a href="#" className="text-gray-400 hover:text-purple-400 transition-colors duration-200">Contact Us</a></li>
+                
               </ul>
             </div>
 
             <div>
               <h3 className="font-semibold text-lg mb-6 text-white">Resources</h3>
               <ul className="space-y-3">
-                <li><a href="#" className="text-gray-400 hover:text-orange-500 transition-colors duration-200">Blog</a></li>
-                <li><a href="#" className="text-gray-400 hover:text-orange-500 transition-colors duration-200">Help Center</a></li>
-                <li><a href="#" className="text-gray-400 hover:text-orange-500 transition-colors duration-200">Courses</a></li>
-                <li><a href="#" className="text-gray-400 hover:text-orange-500 transition-colors duration-200">FAQ</a></li>
+                <li><a href="/blog" className="text-gray-400 hover:text-cyan-400 transition-colors duration-200">Blog</a></li>
+                <li><a href="#" className="text-gray-400 hover:text-cyan-400 transition-colors duration-200">Help Center</a></li>
+                <li><a href="/course-list" className="text-gray-400 hover:text-cyan-400 transition-colors duration-200">Courses</a></li>
+                <li><a href="#" className="text-gray-400 hover:text-cyan-400 transition-colors duration-200">FAQ</a></li>
               </ul>
             </div>
 
@@ -191,7 +202,7 @@ const Footer = () => {
                   />
                   <button
                     onClick={handleSubscribe}
-                    className="w-full bg-gradient-to-r from-blue-600 to-blue-700 text-white font-medium rounded-lg px-4 py-3 hover:from-blue-700 hover:to-blue-800 transition-all duration-300 shadow-lg hover:shadow-blue-500/50"
+                    className="w-full bg-gradient-to-r from-purple-600 via-blue-600 to-cyan-600 text-white font-medium rounded-lg px-4 py-3 hover:from-purple-700 hover:via-blue-700 hover:to-cyan-700 transition-all duration-300 shadow-lg hover:shadow-purple-500/50"
                   >
                     Subscribe Now
                   </button>
@@ -208,14 +219,14 @@ const Footer = () => {
               <div className="flex gap-6 text-sm text-gray-200">
                 <button 
                   onClick={() => setShowTermsPopup(true)}
-                  className="hover:text-orange-500 transition-colors"
+                  className="hover:text-purple-400 transition-colors"
                 >
                   Terms of Service
                 </button>
-                <a href="#" className="hover:text-orange-500 transition-colors">Privacy Policy</a>
+                <a href="#" className="hover:text-cyan-400 transition-colors">Privacy Policy</a>
                 <button 
                   onClick={() => setShowCookieConsent(true)}
-                  className="hover:text-orange-500 transition-colors"
+                  className="hover:text-blue-400 transition-colors"
                 >
                   Cookie Settings
                 </button>
