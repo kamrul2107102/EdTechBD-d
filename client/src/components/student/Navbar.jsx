@@ -106,8 +106,8 @@ const Navbar = () => {
           <div className="hidden md:flex items-center gap-6">
             {/* Navigation Links */}
             <div className="flex items-center gap-1">
-              {["/", "/course-list", "/deals", "/blog"].map((path, idx) => {
-                const label = ["Home", "All Courses", "Deals", "Blog"][idx];
+              {["/", "/course-list", "/blog"].map((path, idx) => {
+                const label = ["Home", "All Courses", "Blog"][idx];
                 return (
                   <Link
                     key={idx}
@@ -201,8 +201,8 @@ const Navbar = () => {
             </div>
             
                     {/* Navigation Links */}
-                    {["/", "/course-list", "/deals", "/blog"].map((path, idx) => {
-                      const label = ["Home", "All Courses", "Deals", "Blog"][idx];
+                    {["/", "/course-list", "/blog"].map((path, idx) => {
+                      const label = ["Home", "All Courses", "Blog"][idx];
                       return (
                         <Link
                           key={idx}
