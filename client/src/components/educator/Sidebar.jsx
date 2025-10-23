@@ -23,7 +23,7 @@ const Sidebar = () => {
       <div className="flex">
         {/* Sidebar */}
         <div
-          className={`${isOpen ? "w-64" : "w-20"} min-h-screen border-r ${currentTheme.border} flex flex-col transition-all duration-300 ease-in-out bg-gray-200 dark:bg-gray-900 fixed md:relative z-50`}
+          className={`${isOpen ? "w-64" : "w-20"} min-h-screen border-r ${currentTheme.border} flex flex-col transition-all duration-300 ease-in-out bg-gray-150 dark:bg-gray-900 fixed md:relative z-50`}
         >
           {/* Header */}
           <div className="flex items-center justify-between p-6 border-b border-gray-200/10">
