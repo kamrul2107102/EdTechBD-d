@@ -378,25 +378,48 @@ User question: ${userMessage}`;
           <h2 className="text-3xl font-bold text-gray-800 mb-2">Available Courses</h2>
           <p className="text-gray-600">Start your programming journey today</p>
 
-          {/* 🌟 Floating AI Button (moves → then fixed) */}
+          {/* 🌟 Floating AI Button - Animated & Alive */}
           <div
-  onClick={() => setChatOpen(!chatOpen)}
-  className={`fixed top-16 right-10 z-50 cursor-pointer flex items-center justify-center 
-              bg-gradient-to-r from-purple-600 to-blue-600 w-16 h-16 rounded-full shadow-2xl 
-              hover:scale-110 transition-transform duration-300 
-              ${isFixed ? "opacity-100" : "opacity-90"}`}
->
-  {/* Glowing background */}
-  <div className="absolute inset-0 rounded-full bg-gradient-to-r 
-                  from-purple-500 to-blue-500 blur-xl opacity-60 animate-pulse"></div>
-
-  {/* Bot icon */}
-  <img
-    src="https://cdn-icons-png.flaticon.com/512/4712/4712100.png"
-    alt="AI Assistant"
-    className="w-10 h-10 relative z-10 object-contain"
-  />
-</div>
+            onClick={() => setChatOpen(!chatOpen)}
+            className={`group fixed top-16 right-10 z-50 cursor-pointer transition-all duration-300 ${
+              isFixed ? "opacity-100" : "opacity-90"
+            }`}
+          >
+            {/* Outer pulsing ring */}
+            <div className="absolute inset-0 rounded-full bg-gradient-to-r from-purple-500 to-blue-500 blur-2xl opacity-40 animate-pulse"></div>
+            
+            {/* Middle rotating ring */}
+            <div className="absolute -inset-2 rounded-full bg-gradient-to-r from-purple-400 via-pink-400 to-blue-400 opacity-75 blur-md animate-spin-slow"></div>
+            
+            {/* Main button */}
+            <div className="relative w-16 h-16 rounded-full bg-gradient-to-br from-purple-600 via-purple-500 to-blue-600 shadow-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+              {/* Sparkle effects */}
+              <div className="absolute inset-0 rounded-full overflow-hidden">
+                <div className="absolute top-2 right-3 w-1 h-1 bg-white rounded-full animate-ping"></div>
+                <div className="absolute bottom-3 left-2 w-1 h-1 bg-white rounded-full animate-ping" style={{ animationDelay: "0.5s" }}></div>
+                <div className="absolute top-1/2 left-1 w-0.5 h-0.5 bg-white rounded-full animate-ping" style={{ animationDelay: "1s" }}></div>
+              </div>
+              
+              {/* Animated gradient overlay */}
+              <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-transparent via-white/20 to-transparent animate-shimmer"></div>
+              
+              {/* Bot icon with breathing effect */}
+              <div className="relative z-10 animate-bounce-subtle">
+                <Sparkles size={28} className="text-white drop-shadow-lg" strokeWidth={2.5} />
+              </div>
+              
+              {/* Notification dot */}
+              <div className="absolute -top-1 -right-1 w-3 h-3 bg-green-400 rounded-full border-2 border-white shadow-lg animate-pulse"></div>
+            </div>
+            
+            {/* Tooltip */}
+            <div className="absolute left-1/2 -translate-x-1/2 -bottom-12 opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none">
+              <div className="bg-gray-900 text-white text-xs px-3 py-1.5 rounded-lg whitespace-nowrap shadow-xl">
+                Ask me anything! 💬
+                <div className="absolute -top-1 left-1/2 -translate-x-1/2 w-2 h-2 bg-gray-900 rotate-45"></div>
+              </div>
+            </div>
+          </div>
 
         </div>
 
