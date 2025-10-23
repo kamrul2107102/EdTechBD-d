@@ -14,7 +14,7 @@ const Sidebar = () => {
     { name: "Add Course", path: "/educator/add-course", icon: FilePlus },
     { name: "My Courses", path: "/educator/my-courses", icon: BookOpen },
     { name: "Doubts", path: "/educator/doubts", icon: MessageCircleQuestion },
-    { name: "Earnings", path: "/educator/student-enrolled", icon: Users },
+    { name: "Students Enrolled", path: "/educator/student-enrolled", icon: Users },
     { name: "Audited Courses", path: "/educator/audited-courses", icon: BookOpen },
   ];
 
@@ -23,7 +23,7 @@ const Sidebar = () => {
       <div className="flex">
         {/* Sidebar */}
         <div
-          className={`${isOpen ? "w-64" : "w-20"} min-h-screen border-r ${currentTheme.border} flex flex-col transition-all duration-300 ease-in-out ${currentTheme.bg} fixed md:relative z-50`}
+          className={`${isOpen ? "w-64" : "w-20"} min-h-screen border-r ${currentTheme.border} flex flex-col transition-all duration-300 ease-in-out bg-gray-200 dark:bg-gray-900 fixed md:relative z-50`}
         >
           {/* Header */}
           <div className="flex items-center justify-between p-6 border-b border-gray-200/10">
@@ -91,12 +91,12 @@ const Sidebar = () => {
             })}
           </nav>
 
-          {/* Footer */}
+          {/* Footer 
           <div className={`p-4 border-t ${currentTheme.border}`}>
             <div className={`text-xs ${currentTheme.text} opacity-50 text-center transition-all duration-300 ${isOpen ? "opacity-100" : "opacity-0"}`}>
-              © 2024 EdTechBd
+              © 202 EdTechBd
             </div>
-          </div>
+          </div> */ }
         </div>
 
         {/* Mobile Overlay */}
