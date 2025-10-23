@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { pythonCourse } from "../../data/pythonCourse";
 import { ChevronLeft, ChevronRight, CheckCircle, Circle, BookOpen, Menu, X } from "lucide-react";
-import Footer from "../../components/student/Footer";
 import ReactMarkdown from "react-markdown";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { vscDarkPlus } from "react-syntax-highlighter/dist/esm/styles/prism";
@@ -13,6 +12,7 @@ const PythonCourse = () => {
   const [currentLessonIndex, setCurrentLessonIndex] = useState(0);
   const [completedLessons, setCompletedLessons] = useState([]);
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
 
   // Flatten all lessons from all chapters
   const allLessons = pythonCourse.chapters.flatMap((chapter) =>
@@ -97,15 +97,28 @@ const PythonCourse = () => {
           </div>
         </div>
 
-        <div className="flex max-w-7xl mx-auto">
+        <div className="flex max-w-7xl mx-auto relative">
           {/* Sidebar - Lesson Navigation */}
           <div
             className={`${
               sidebarOpen ? "translate-x-0" : "-translate-x-full"
-            } md:translate-x-0 fixed md:sticky top-[73px] left-0 w-80 h-[calc(100vh-73px)] bg-white border-r shadow-lg overflow-y-auto transition-transform duration-300 z-30`}
+            } ${
+              sidebarCollapsed ? "md:w-0 md:opacity-0" : "md:w-80 md:opacity-100"
+            } md:translate-x-0 fixed md:sticky top-[73px] left-0 w-80 h-[calc(100vh-73px)] bg-white border-r shadow-lg overflow-y-auto transition-all duration-300 z-30`}
           >
             <div className="p-4">
-              <h2 className="text-lg font-bold text-gray-800 mb-4">Course Content</h2>
+              <div className="flex items-center justify-between mb-4">
+                <h2 className="text-lg font-bold text-gray-800">
+                  Course Content
+                </h2>
+                <button
+                  onClick={() => setSidebarCollapsed(!sidebarCollapsed)}
+                  className="hidden md:block p-1.5 hover:bg-gray-100 rounded-lg transition-colors"
+                  title={sidebarCollapsed ? "Show sidebar" : "Hide sidebar"}
+                >
+                  {sidebarCollapsed ? <ChevronRight size={20} /> : <ChevronLeft size={20} />}
+                </button>
+              </div>
               {pythonCourse.chapters.map((chapter) => (
                 <div key={chapter.id} className="mb-4">
                   <h3 className="font-semibold text-gray-700 mb-2 flex items-center gap-2">
@@ -143,8 +156,22 @@ const PythonCourse = () => {
             </div>
           </div>
 
+          {/* Sidebar Toggle Button (when collapsed) */}
+          {sidebarCollapsed && (
+            <button
+              onClick={() => setSidebarCollapsed(false)}
+              className="hidden md:flex fixed top-24 left-4 z-40 p-2 bg-blue-500 hover:bg-blue-600 text-white rounded-lg shadow-lg transition-all duration-200 items-center gap-2"
+              title="Show sidebar"
+            >
+              <ChevronRight size={20} />
+              <span className="text-sm font-medium">Course Content</span>
+            </button>
+          )}
+
           {/* Main Content */}
-          <div className="flex-1 p-6 md:p-8">
+          <div className={`flex-1 p-6 md:p-8 transition-all duration-300 ${
+            sidebarCollapsed ? "md:ml-0" : ""
+          }`}>
             <div className="max-w-4xl mx-auto">
               {/* Lesson Header */}
               <div className="bg-white rounded-2xl shadow-lg p-8 mb-6">
