@@ -1,10 +1,11 @@
 # AI Powered LMS — Core Features
 
-This file is an authoritative, repo-checked list of the core features implemented (or clearly planned) in this project. Each feature includes short descriptions and direct file references where the feature is implemented or used.
+
 
 ---
 
 ## Table of Contents
+
 - [Student (Learner) Features](#student-learner-features)
 - [Educator Features](#educator-features)
 - [Admin Features](#admin-features)
@@ -13,159 +14,207 @@ This file is an authoritative, repo-checked list of the core features implemente
 - [Lessons, Quizzes & Premium Unit System](#lessons-quizzes--premium-unit-system)
 - [Authentication & Authorization](#authentication--authorization)
 - [Integrations & Infrastructure](#integrations--infrastructure)
-- [Data Models (summary)](#data-models-summary)
-- [AI-related notes & opportunities](#ai-related-notes--opportunities)
+- [Data Models (Summary)](#data-models-summary)
+- [AI-Related Notes & Opportunities](#ai-related-notes--opportunities)
 - [Utilities, Developer & Seed Data](#utilities-developer--seed-data)
 
 ---
 
-## [🔗 Student (Learner) Features](#student-learner-features)
+## Student (Learner) Features
 
-- **Course catalog & discovery**  
-  - Browse and filter courses; course listing and detail pages.  
-  - Files: `client/src/pages/student/CoursesList.jsx`, `client/src/pages/student/CourseDetails.jsx`, `client/src/components/student/CourseCard.jsx`
+- **Course Catalog & Discovery**  
+  Browse and filter courses; includes course listing and detail pages.  
+  **Files:**  
+  `client/src/pages/student/CoursesList.jsx`,  
+  `client/src/pages/student/CourseDetails.jsx`,  
+  `client/src/components/student/CourseCard.jsx`
 
 - **Enrollment & Purchase (Premium Courses)**  
-  - One-time purchases to unlock premium course content. Frontend has a purchase modal and localStorage fallback; backend supports persisted purchases and webhook-based confirmation.  
-  - Files: `client/src/pages/student/PremiumMLCourse.jsx`, `server/models/Purchase.js`, `server/controllers/webhooks.js` (Stripe handler)
+  One-time purchases to unlock premium content with Stripe integration.  
+  **Files:**  
+  `client/src/pages/student/PremiumMLCourse.jsx`,  
+  `server/models/Purchase.js`,  
+  `server/controllers/webhooks.js`
 
 - **Audit / Course Preview**  
-  - Allows users to "audit" (preview) courses without purchasing. Audited courses are tracked and can be viewed by students and educators.  
-  - Files: `server/models/Audit.js`, student page `client/src/pages/student/AuditPage.jsx`, educator view `client/src/pages/educator/AuditedCourses.jsx`
+  Allows users to preview courses without purchase; tracked in DB.  
+  **Files:**  
+  `server/models/Audit.js`,  
+  `client/src/pages/student/AuditPage.jsx`,  
+  `client/src/pages/educator/AuditedCourses.jsx`
 
 - **Lesson Player & Content Types**  
-  - Support for different lesson types (lesson, test, practice, reward) and lesson player pages for video and text.  
-  - Files: `client/src/pages/student/LessonPlayer.jsx`, `client/src/pages/student/Player.jsx`, `client/src/pages/student/TextPlayer.jsx`, server lesson APIs `server/controllers/lessonController.js`, `server/models/Lesson.js`
+  Supports video, text, test, practice, and reward lessons.  
+  **Files:**  
+  `client/src/pages/student/LessonPlayer.jsx`,  
+  `client/src/pages/student/Player.jsx`,  
+  `client/src/pages/student/TextPlayer.jsx`,  
+  `server/controllers/lessonController.js`
 
 - **Progress Tracking & Gamification**  
-  - Track completed units and show XP/Badges/Trophies. Sequential unlocking logic present for premium course units.  
-  - Files: `client/src/pages/student/PremiumMLCourse.jsx`, `server/models/LessonProgress.js`, `server/models/CourseProgress.js`
+  Track completed units and award XP, badges, and trophies.  
+  **Files:**  
+  `client/src/pages/student/PremiumMLCourse.jsx`,  
+  `server/models/LessonProgress.js`,  
+  `server/models/CourseProgress.js`
 
 - **Comments, Ratings & Testimonials**  
-  - Comment and rating systems for courses; comment model and controller exist.  
-  - Files: `server/models/Comment.js`, `server/controllers/commentController.js`, frontend components in `client/src/components/student/` (e.g., `TestimonialsSection.jsx`)
+  Students can rate and comment on courses.  
+  **Files:**  
+  `server/models/Comment.js`,  
+  `server/controllers/commentController.js`,  
+  `client/src/components/student/TestimonialsSection.jsx`
 
 - **Blog & Resources**  
-  - Blog page and supplemental resources for students.  
-  - Files: `client/src/pages/student/Blog.jsx`
+  Student blog and resource hub.  
+  **Files:**  
+  `client/src/pages/student/Blog.jsx`
 
 ---
 
-## [🔗 Educator Features](#educator-features)
+## Educator Features
 
 - **Educator Dashboard & Analytics**  
-  - Educator-facing dashboard with enrollment summaries and trend visualizations.  
-  - Files: `client/src/pages/educator/Dashboard.jsx`, components in `client/src/components/educator/`
+  Dashboard with course and enrollment metrics.  
+  **Files:**  
+  `client/src/pages/educator/Dashboard.jsx`,  
+  `client/src/components/educator/*`
 
 - **Course & Lesson Management**  
-  - Educators can create and manage courses and lessons.  
-  - Files: `client/src/pages/educator/AddCourse.jsx`, `client/src/pages/educator/MyCourses.jsx`, `server/controllers/courseController.js`, `server/routes/courseRoute.js`
+  Educators can create, edit, and delete courses and lessons.  
+  **Files:**  
+  `client/src/pages/educator/AddCourse.jsx`,  
+  `client/src/pages/educator/MyCourses.jsx`,  
+  `server/controllers/courseController.js`
 
 - **Student Lists & Earnings**  
-  - View students enrolled in courses and calculate earnings from purchases.  
-  - Files: `client/src/pages/educator/StudentsEnrolled.jsx`, `server/controllers/educatorController.js` (uses `Purchase` model)
+  View enrolled students and course earnings.  
+  **Files:**  
+  `client/src/pages/educator/StudentsEnrolled.jsx`,  
+  `server/controllers/educatorController.js`
 
-- **Audited Courses for Educators**  
-  - Educators can view who audited their courses and when.  
-  - Files: `client/src/pages/educator/AuditedCourses.jsx`
+- **Audited Courses Overview**  
+  See which users previewed courses.  
+  **Files:**  
+  `client/src/pages/educator/AuditedCourses.jsx`
 
 ---
 
-## [🔗 Admin Features](#admin-features)
+## Admin Features
 
 - **Admin Management & Moderation**  
-  - Approve educators, manage users, and manage platform content.  
-  - Files: `client/src/pages/admin/*`, `server/controllers/adminController.js`, `server/routes/adminRoutes.js`
+  Approve educators, manage users, and control content.  
+  **Files:**  
+  `client/src/pages/admin/*`,  
+  `server/controllers/adminController.js`
 
-- **Platform Analytics & Admin Dashboard**  
-  - Admin-level stats and management panels.  
-  - Files: `client/src/components/admin/*`, `client/src/pages/admin/AdminDashboard.jsx`
+- **Platform Analytics & Dashboard**  
+  Centralized stats and monitoring tools.  
+  **Files:**  
+  `client/src/components/admin/*`,  
+  `client/src/pages/admin/AdminDashboard.jsx`
 
 ---
 
-## [🔗 Payments, Purchases & Webhooks](#payments-purchases--webhooks)
+## Payments, Purchases & Webhooks
 
-- **Purchase Model & Status**  
-  - Schema with status tracking (`pending`, `completed`, `failed`), and purchase amount.  
-  - Files: `server/models/Purchase.js`
+- **Purchase Model & Status Tracking**  
+  Schema tracks purchase status (`pending`, `completed`, `failed`).  
+  **File:** `server/models/Purchase.js`
 
-- **Payment Provider Integration & Webhooks**  
-  - Stripe integration for payment confirmation; webhook handler finalizes purchases and enrolls users on success. Clerk webhook handlers manage user create/update/delete events.  
-  - Files: `server/controllers/webhooks.js` (functions `stripeWebhooks` and `clerkWebhooks`)
+- **Payment Provider Integration (Stripe)**  
+  Stripe handles payments; webhooks confirm transactions.  
+  **Files:**  
+  `server/controllers/webhooks.js`
 
 - **Frontend Purchase Flow**  
-  - Purchase modal and client-side processing (localStorage simulated purchase for development). Real payment confirmed via Stripe webhooks.  
-  - Files: `client/src/pages/student/PremiumMLCourse.jsx`
+  Purchase modal and localStorage fallback for dev mode.  
+  **File:** `client/src/pages/student/PremiumMLCourse.jsx`
 
 ---
 
-## [🔗 Audit / Preview System](#audit--preview-system)
+## Audit / Preview System
 
-- **Audit model & API**  
-  - Tracks which users audited which courses (with timestamps).  
-  - Files: `server/models/Audit.js`, API route referenced by `client/src/pages/student/AuditPage.jsx` and `client/src/pages/educator/AuditedCourses.jsx`
-
----
-
-## [🔗 Lessons, Quizzes & Premium Unit System](#lessons-quizzes--premium-unit-system)
-
-- **Complete lesson model and controller**  
-  - Lesson metadata (unitNumber etc.) and endpoints to fetch lessons by course.  
-  - Files: `server/models/Lesson.js`, `server/controllers/lessonController.js`
-
-- **Premium ML Course (interactive, gated)**  
-  - Duolingo-style interactive lessons described in `LESSON_SETUP.md`. Premium course UI implements sections, units, gating, tests, rewards, and sequential unlocking.  
-  - Files: `LESSON_SETUP.md`, `client/src/pages/student/PremiumMLCourse.jsx`
+- **Audit Model & API**  
+  Tracks course previews per user.  
+  **Files:**  
+  `server/models/Audit.js`,  
+  `client/src/pages/student/AuditPage.jsx`,  
+  `client/src/pages/educator/AuditedCourses.jsx`
 
 ---
 
-## [🔗 Authentication & Authorization](#authentication--authorization)
+## Lessons, Quizzes & Premium Unit System
 
-- **Clerk-based authentication**  
-  - Uses Clerk for user accounts and webhooks to sync users to the local DB.  
-  - Files: `server/controllers/webhooks.js` (Clerk webhook handling), frontend `useUser()` calls (e.g., in `PremiumMLCourse.jsx`)
+- **Lesson Model & Controller**  
+  Metadata (unit number, content type) and fetching endpoints.  
+  **Files:**  
+  `server/models/Lesson.js`,  
+  `server/controllers/lessonController.js`
 
-- **Auth middleware & role checks**  
-  - Middleware for protecting routes and role-based access checks.  
-  - Files: `server/middlewares/authMiddleware.js`
-
----
-
-## [🔗 Integrations & Infrastructure](#integrations--infrastructure)
-
-- **Cloudinary + multer for media uploads**  
-  - Files: `server/configs/cloudinary.js`, `server/configs/multer.js`
-
-- **Database: MongoDB**  
-  - Mongoose models located under `server/models/*`; DB connection in `server/configs/mongodb.js`
-
-- **Webhook tooling:**  
-  - Svix used for Clerk verification; Stripe for payments  
-  - Files: `server/controllers/webhooks.js`
+- **Premium ML Course (Interactive Gated Learning)**  
+  Sequential unlocking, tests, and reward logic.  
+  **Files:**  
+  `LESSON_SETUP.md`,  
+  `client/src/pages/student/PremiumMLCourse.jsx`
 
 ---
 
-## [🔗 Data Models (summary)](#data-models-summary)
+## Authentication & Authorization
 
-- `User` — `server/models/User.js`  
-- `Course` — `server/models/Course.js`  
-- `Lesson` — `server/models/Lesson.js`  
-- `Purchase` — `server/models/Purchase.js`  
-- `Audit` — `server/models/Audit.js`  
-- `CourseProgress`, `LessonProgress` — `server/models/CourseProgress.js`, `server/models/LessonProgress.js`  
-- `Comment`, `Doubt` — `server/models/Comment.js`, `server/models/Doubt.js`
+- **Clerk-Based Authentication**  
+  Uses Clerk for user accounts; synced via webhooks.  
+  **Files:**  
+  `server/controllers/webhooks.js`,  
+  `client/src/pages/student/PremiumMLCourse.jsx`
+
+- **Role-Based Access & Middleware**  
+  Protects routes by user role.  
+  **File:** `server/middlewares/authMiddleware.js`
 
 ---
 
-## [🔗 AI-related notes & opportunities](#ai-related-notes--opportunities)
+## Integrations & Infrastructure
 
+- **Cloudinary + Multer for Uploads**  
+  **Files:**  
+  `server/configs/cloudinary.js`,  
+  `server/configs/multer.js`
 
+- **MongoDB Database**  
+  **Files:**  
+  `server/models/*`,  
+  `server/configs/mongodb.js`
 
-## [🔗 Utilities, Developer & Seed Data](#utilities-developer--seed-data)
+- **Webhook Tooling**  
+  Stripe (payments) + Svix (Clerk events).  
+  **File:** `server/controllers/webhooks.js`
 
-- **Seed scripts**  
-  - Populate courses and lessons for local/dev testing.  
-  - Files: `server/seed.js`, `server/seedLessons.js`
+---
 
-- **Environment & config**  
-  - `.env.example` files exist in both `client/` and `server/` for required secrets like Stripe/Clerk keys.  
+## Data Models Summary
+
+| Model | File |
+|-------|------|
+| User | `server/models/User.js` |
+| Course | `server/models/Course.js` |
+| Lesson | `server/models/Lesson.js` |
+| Purchase | `server/models/Purchase.js` |
+| Audit | `server/models/Audit.js` |
+| CourseProgress | `server/models/CourseProgress.js` |
+| LessonProgress | `server/models/LessonProgress.js` |
+| Comment | `server/models/Comment.js` |
+| Doubt | `server/models/Doubt.js` |
+
+---
+
+## AI-Related Notes & Opportunities
+
+- **Gemini (Google Generative AI) Integration**  
+  Implemented on two pages:  
+  `client/src/pages/student/Home.jsx` and `client/src/pages/student/Learn.jsx`.
+
+  ```js
+  const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash" });
+  const result = await model.generateContent(prompt);
+  const responseText = await result.response.text();
