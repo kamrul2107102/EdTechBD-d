@@ -184,4 +184,3 @@ client/src/
 - Progress is tracked per user
 - Rewards can be used for gamification
 
-Enjoy your Duolingo-style learning experience! 🎓✨

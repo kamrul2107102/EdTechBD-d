@@ -1,6 +1,7 @@
 # LMS MERN WEBSITE
-
-🔗 **Live Demo**: [https://course-taupe-alpha.vercel.app/](https://course-taupe-alpha.vercel.app/)
+## https://ed-tech-bd-d-git-main-kamrul-islams-projects-43e1e2ce.vercel.app/
+## https://ed-tech-bd-d.vercel.app/
+🔗 **Live De##mo**: [https://course-taupe-alpha.vercel.app/](https://course-taupe-alpha.vercel.app/)
 
 ![License](https://img.shields.io/badge/license-MIT-blue.svg)
 ![Node](https://img.shields.io/badge/node-%3E%3D16.0.0-brightgreen)
