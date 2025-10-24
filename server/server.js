@@ -10,7 +10,8 @@ import courseRouter from "./routes/courseRoute.js";
 import userRouter from "./routes/userRoutes.js";
 import doubtRouter from "./routes/doubtRoutes.js";
 import commentRouter from "./routes/commentRoutes.js";
-import adminRouter from "./routes/adminRoutes.js"; // ✅ (1) Admin Routes import করা হয়েছে
+import adminRouter from "./routes/adminRoutes.js"; // ✅ (1) Admin Routes import করা হয়েছে
+import lessonRouter from "./routes/lessonRoutes.js";
 
 // Initialize Express
 const app = express();
@@ -40,6 +41,7 @@ app.use("/api/doubt", express.json(), doubtRouter);
 app.use("/api/comment", express.json(), commentRouter);
 app.post("/stripe", express.raw({ type: "application/json" }), stripeWebhooks);
 app.use("/api/admin", express.json(), adminRouter); // ✅ (2) Admin routes add করা হলো
+app.use("/api/lesson", express.json(), lessonRouter);
 
 // Portauth
 const PORT = process.env.PORT || 5001;
