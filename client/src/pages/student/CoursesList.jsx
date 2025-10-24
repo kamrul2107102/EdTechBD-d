@@ -13,6 +13,8 @@ import {
   Star,
   SlidersHorizontal,
   GraduationCap,
+  ChevronLeft,
+  ChevronRight,
 } from "lucide-react";
 
 const CoursesList = () => {
@@ -23,6 +25,7 @@ const CoursesList = () => {
   const [selectedCategories, setSelectedCategories] = useState([]);
   const [sortOption, setSortOption] = useState("default");
   const [selectedRating, setSelectedRating] = useState(null);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
   
   const categories = [
     { id: 1, name: "Development", icon: <Code size={18} /> },
@@ -111,10 +114,35 @@ const CoursesList = () => {
         </div>
       </div>*/}
 
-      <div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-0 py-8">
-        <div className="flex flex-col lg:flex-row gap-8">
-          {/* 🧩 Sticky Filter Sidebar */}
-          <aside className="lg:sticky lg:top-[130px] self-start w-full lg:w-72 shrink-0 lg:ml-0">
+      {/* Toggle Button When Sidebar is Collapsed */}
+      {!isSidebarOpen && (
+        <button
+          onClick={() => setIsSidebarOpen(true)}
+          className="fixed top-32 left-4 z-50 bg-white hover:bg-gray-50 text-gray-700 p-3 rounded-full shadow-lg border-2 border-gray-200 hover:border-blue-400 transition-all duration-300 hover:scale-110"
+          aria-label="Open Sidebar"
+        >
+          <ChevronRight size={20} />
+        </button>
+      )}
+
+      <div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8 py-8">
+        <div className="flex flex-col lg:flex-row gap-8 relative">
+          {/* 🧩 Collapsible Filter Sidebar */}
+          <aside className={`lg:sticky lg:top-[130px] self-start transition-all duration-300 ease-in-out shrink-0 ${
+            isSidebarOpen ? 'w-full lg:w-72' : 'w-0 lg:w-0 overflow-hidden'
+          }`}>
+            {/* Toggle Button - Inside Sidebar */}
+            {isSidebarOpen && (
+              <button
+                onClick={() => setIsSidebarOpen(false)}
+                className="sticky top-32 z-10 bg-white hover:bg-gray-50 text-gray-700 p-3 rounded-full shadow-lg border-2 border-gray-200 hover:border-blue-400 transition-all duration-300 hover:scale-110 mb-4"
+                aria-label="Close Sidebar"
+              >
+                <ChevronLeft size={20} />
+              </button>
+            )}
+
+            <div className={`transition-opacity duration-300 ${isSidebarOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
             {/* Free Tutorial Section */}
             <div className="mb-6 bg-gradient-to-r from-blue-50 via-purple-50 to-cyan-50 rounded-xl shadow-lg border-2 border-blue-200 p-6 text-center">
               <div className="flex justify-center mb-3">
@@ -208,10 +236,11 @@ const CoursesList = () => {
                 </div>
               </div>
             </div>
+            </div>
           </aside>
 
           {/* 🧩 Main Course Section */}
-          <main className="flex-1 min-w-0">
+          <main className={`flex-1 min-w-0 transition-all duration-300 ${isSidebarOpen ? 'lg:ml-0' : 'lg:ml-16'}`}>
             {/* Header */}
             <div className="bg-white rounded-xl shadow-md border border-gray-200 p-6 mb-6">
               <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
@@ -241,8 +270,8 @@ const CoursesList = () => {
               </div>
             </div>
 
-            {/* Course List */}
-            <div className="space-y-6">
+            {/* Course Grid - 2 Columns */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
               {filteredCourses.length > 0 ? (
                 filteredCourses.map((course, index) => (
                   <div
@@ -253,7 +282,7 @@ const CoursesList = () => {
                   </div>
                 ))
               ) : (
-                <div className="bg-white rounded-xl shadow-md border border-gray-200 p-12 text-center">
+                <div className="col-span-2 bg-white rounded-xl shadow-md border border-gray-200 p-12 text-center">
                   <div className="text-gray-400 mb-4">
                     <BookOpen size={48} className="mx-auto" />
                   </div>
