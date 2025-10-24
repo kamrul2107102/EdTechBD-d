@@ -136,13 +136,15 @@
 // };
 
 // export default Learn;
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import { Code, BookOpen, Award, Braces, Brain, Send, X, Sparkles } from "lucide-react";
+import { Code, BookOpen, Award, Braces, Brain, Send, X, Sparkles, Crown, Star, Zap } from "lucide-react";
 import { GoogleGenerativeAI } from "@google/generative-ai";
+import { AppContext } from "../../context/AppContext";
 
 const Learn = () => {
   const navigate = useNavigate();
+  const { allCourses } = useContext(AppContext);
   const [chatOpen, setChatOpen] = useState(false);
   const [messages, setMessages] = useState([
     { from: "ai", text: "🤖 Hello! I'm your AI Study Buddy powered by Gemini! Ask me anything about coding, programming concepts, or your courses!" },
@@ -421,6 +423,111 @@ User question: ${userMessage}`;
             </div>
           </div>
 
+        </div>
+
+        {/* 🌟 Premium Course Card */}
+        <div className="mb-12 animate-slide-down">
+          <div className="relative group cursor-pointer" onClick={() => navigate('/learn/premium-ml')}>
+            {/* Animated glow effect */}
+            <div className="absolute -inset-1 bg-gradient-to-r from-amber-400 via-yellow-400 to-amber-400 rounded-3xl blur-2xl opacity-40 group-hover:opacity-60 animate-pulse transition-opacity duration-300"></div>
+            
+            <div className="relative bg-gradient-to-br from-amber-50 via-yellow-50 to-orange-50 rounded-2xl shadow-2xl overflow-hidden transform group-hover:-translate-y-2 transition-all duration-300 border-4 border-amber-300">
+              {/* Premium Badge */}
+              <div className="absolute top-4 right-4 z-10">
+                <div className="flex items-center gap-2 bg-gradient-to-r from-amber-500 to-yellow-400 text-white px-4 py-2 rounded-full shadow-lg font-bold text-sm">
+                  <Crown size={18} fill="white" />
+                  <span>PREMIUM</span>
+                  <Sparkles size={16} />
+                </div>
+              </div>
+
+              {/* Floating sparkles */}
+              <div className="absolute inset-0 overflow-hidden pointer-events-none">
+                <Star className="absolute top-10 left-10 text-yellow-400 animate-ping" size={20} fill="#facc15" style={{ animationDuration: "2s" }} />
+                <Star className="absolute bottom-20 right-20 text-amber-400 animate-ping" size={16} fill="#fbbf24" style={{ animationDuration: "3s", animationDelay: "0.5s" }} />
+                <Zap className="absolute top-1/2 right-10 text-orange-400 animate-bounce" size={24} style={{ animationDuration: "2.5s" }} />
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 p-8">
+                {/* Left Side - Content */}
+                <div className="relative z-10">
+                  <div className="mb-4">
+                    <span className="inline-block bg-gradient-to-r from-purple-600 to-blue-600 text-white text-xs font-bold px-3 py-1 rounded-full mb-3">
+                      ⚡ NEW COURSE
+                    </span>
+                    <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-2 flex items-center gap-3">
+                      <Brain size={36} className="text-purple-600" />
+                      Machine Learning Certification
+                    </h2>
+                    <p className="text-gray-600 text-lg leading-relaxed mb-4">
+                      {allCourses?.find(c => c.courseTitle?.toLowerCase().includes("machine learning") && c.courseTitle?.toLowerCase().includes("certification"))?.courseDescription || 
+                      "Master ML with our comprehensive, gamified learning path. Interactive lessons, real-world projects, and certification upon completion."}
+                    </p>
+                  </div>
+
+                  <div className="space-y-3 mb-6">
+                    <div className="flex items-center gap-3">
+                      <div className="w-10 h-10 rounded-full bg-green-100 flex items-center justify-center">
+                        <Zap size={20} className="text-green-600" />
+                      </div>
+                      <span className="text-gray-700 font-medium">Gamified snake-path learning experience</span>
+                    </div>
+                    <div className="flex items-center gap-3">
+                      <div className="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center">
+                        <BookOpen size={20} className="text-blue-600" />
+                      </div>
+                      <span className="text-gray-700 font-medium">Rich, interactive course content</span>
+                    </div>
+                    <div className="flex items-center gap-3">
+                      <div className="w-10 h-10 rounded-full bg-purple-100 flex items-center justify-center">
+                        <Award size={20} className="text-purple-600" />
+                      </div>
+                      <span className="text-gray-700 font-medium">Earn certification & rewards</span>
+                    </div>
+                  </div>
+
+                  <button className="w-full md:w-auto px-8 py-4 bg-gradient-to-r from-purple-600 via-blue-600 to-cyan-600 text-white font-bold rounded-xl shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-300 flex items-center justify-center gap-2 group">
+                    <span>Start Premium Course</span>
+                    <Sparkles size={20} className="group-hover:rotate-12 transition-transform" />
+                  </button>
+                </div>
+
+                {/* Right Side - Preview Visual */}
+                <div className="relative flex items-center justify-center">
+                  <div className="relative">
+                    {/* Decorative circles */}
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <div className="w-64 h-64 rounded-full bg-gradient-to-br from-purple-200 via-blue-200 to-cyan-200 animate-pulse opacity-30"></div>
+                    </div>
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <div className="w-48 h-48 rounded-full bg-gradient-to-br from-purple-300 via-blue-300 to-cyan-300 animate-ping opacity-20" style={{ animationDuration: "3s" }}></div>
+                    </div>
+
+                    {/* Central icon */}
+                    <div className="relative z-10 w-40 h-40 rounded-full bg-gradient-to-br from-purple-600 via-blue-600 to-cyan-600 flex items-center justify-center shadow-2xl">
+                      <Brain size={80} className="text-white" strokeWidth={1.5} />
+                    </div>
+
+                    {/* Floating badges */}
+                    <div className="absolute -top-4 -left-4 bg-white rounded-2xl shadow-xl p-3 transform rotate-12 group-hover:rotate-6 transition-transform">
+                      <Star size={32} className="text-yellow-400" fill="#facc15" />
+                    </div>
+                    <div className="absolute -bottom-4 -right-4 bg-white rounded-2xl shadow-xl p-3 transform -rotate-12 group-hover:-rotate-6 transition-transform">
+                      <Award size={32} className="text-purple-600" />
+                    </div>
+                    <div className="absolute top-1/2 -right-8 bg-white rounded-2xl shadow-xl p-2 transform group-hover:translate-x-2 transition-transform">
+                      <Crown size={24} className="text-amber-500" fill="#f59e0b" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="mb-8">
+          <h3 className="text-2xl font-bold text-gray-800 mb-2">Free Courses</h3>
+          <p className="text-gray-600 text-sm">Learn the fundamentals at your own pace</p>
         </div>
 
         {/* Courses Grid */}
