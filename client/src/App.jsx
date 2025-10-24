@@ -27,6 +27,8 @@ import Learn from "./pages/student/Learn";
 import PythonCourse from "./pages/student/PythonCourse";
 import JavaScriptCourse from "./pages/student/JavaScriptCourse.jsx";
 import MachineLearningCourse from "./pages/student/MachineLearningCourse";
+import PremiumMLCourse from "./pages/student/PremiumMLCourse";
+import LessonPlayer from "./pages/student/LessonPlayer";
 import AdminLayout from "./pages/admin/AdminLayout";
 import AdminDashboard from "./pages/admin/AdminDashboard";
 import ManageUsers from "./pages/admin/ManageUsers";
@@ -60,6 +62,8 @@ const App = () => {
         <Route path="/learn/:courseId" element={<PythonCourse />} />
         <Route path="/learn-js/:courseId" element={<JavaScriptCourse />} />
         <Route path="/learn-ml/:courseId" element={<MachineLearningCourse />} />
+        <Route path="/learn/premium-ml" element={<PremiumMLCourse />} />
+        <Route path="/lesson/:lessonId" element={<LessonPlayer />} />
 
         {/* ✅ Audit Page Route */}
         <Route path="/audit" element={<AuditPage />} />
