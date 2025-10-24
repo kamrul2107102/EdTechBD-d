@@ -3,8 +3,12 @@ import { useParams, useNavigate } from "react-router-dom";
 import { pythonCourse } from "../../data/pythonCourse";
 import { ChevronLeft, ChevronRight, CheckCircle, Circle, BookOpen, Menu, X } from "lucide-react";
 import ReactMarkdown from "react-markdown";
-import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
-import { vscDarkPlus } from "react-syntax-highlighter/dist/esm/styles/prism";
+import { Light as SyntaxHighlighter } from "react-syntax-highlighter";
+import python from "react-syntax-highlighter/dist/esm/languages/hljs/python";
+import { docco } from "react-syntax-highlighter/dist/esm/styles/hljs";
+
+// Register only the language we need
+SyntaxHighlighter.registerLanguage("python", python);
 
 const PythonCourse = () => {
   const { courseId } = useParams();
@@ -198,7 +202,7 @@ const PythonCourse = () => {
                         const match = /language-(\w+)/.exec(className || "");
                         return !inline && match ? (
                           <SyntaxHighlighter
-                            style={vscDarkPlus}
+                            style={docco}
                             language={match[1]}
                             PreTag="div"
                             {...props}
