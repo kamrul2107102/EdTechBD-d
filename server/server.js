@@ -25,8 +25,16 @@ await connectCloudinary();
 // Middlewares
 app.use(
   cors({
-    origin: true, // Allow all origins
+    origin: [
+      'http://localhost:5173',
+      'http://localhost:5174',
+      'https://ed-tech-bd-d.vercel.app',
+      'https://ed-tech-bd-d-git-main-kamrul-islams-projects-43e1e2ce.vercel.app',
+      /\.vercel\.app$/  // Allow all Vercel preview deployments
+    ],
     credentials: true,
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization']
   })
 );
 app.use(clerkMiddleware());
