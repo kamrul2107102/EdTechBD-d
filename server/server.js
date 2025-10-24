@@ -28,8 +28,8 @@ app.use(
     origin: [
       'http://localhost:5173',
       'http://localhost:5174',
-      'https://ed-tech-bd-d.vercel.app',
-      'https://ed-tech-bd-d-git-main-kamrul-islams-projects-43e1e2ce.vercel.app',
+      'https://aipoweredlms.vercel.app',
+      'https://ed-tech-bd-d.vercel.app',  // Keep old URL for transition
       /\.vercel\.app$/  // Allow all Vercel preview deployments
     ],
     credentials: true,
