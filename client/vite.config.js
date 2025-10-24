@@ -33,6 +33,23 @@ export default defineConfig({
   build: {
     commonjsOptions: {
       include: [/react-syntax-highlighter/, /node_modules/]
+    },
+    rollupOptions: {
+      external: [],
+      output: {
+        manualChunks: undefined
+      },
+      onwarn(warning, warn) {
+        // Suppress "Module level directives cause errors when bundled" warnings
+        if (warning.code === 'MODULE_LEVEL_DIRECTIVE') {
+          return
+        }
+        // Suppress dynamic import warnings
+        if (warning.code === 'UNRESOLVED_IMPORT') {
+          return
+        }
+        warn(warning)
+      }
     }
   }
 })
