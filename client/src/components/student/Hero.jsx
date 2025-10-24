@@ -64,20 +64,24 @@ const Hero = () => {
               JavaScript, Machine Learning & more
             </p>
             {/* Buttons remain visible */}
-            <div className="flex flex-wrap gap-4">
-              <a
-                href="/course-list"
-                className="px-6 py-3 bg-gradient-to-r from-purple-600 to-blue-600 text-white font-semibold rounded-lg hover:from-purple-700 hover:to-blue-700 transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105"
-              >
-                Explore Courses
-              </a>
-              <a
-                href="/learn"
-                className="px-6 py-3 bg-white/10 backdrop-blur-sm text-white font-semibold rounded-lg border-2 border-white/30 hover:bg-white/20 transition-all duration-300"
-              >
-                Start Free Tutorial
-              </a>
-            </div>
+            <div className="flex flex-col md:flex-row gap-3 md:gap-4 w-full md:w-auto">
+  {/* Button 1 */}
+  <a
+    href="/course-list"
+    className="w-full md:w-auto text-center px-3 py-2 text-sm md:px-6 md:py-3 md:text-base bg-gradient-to-r from-purple-600 to-blue-600 text-white font-semibold rounded-lg hover:from-purple-700 hover:to-blue-700 transition-all duration-300 shadow-md hover:shadow-lg hover:scale-105"
+  >
+    Explore Courses
+  </a>
+
+  {/* Button 2 */}
+  <a
+    href="/learn"
+    className="w-full md:w-auto text-center px-3 py-2 text-sm md:px-6 md:py-3 md:text-base bg-white/10 backdrop-blur-sm text-white font-semibold rounded-lg border-2 border-white/30 hover:bg-white/20 transition-all duration-300"
+  >
+    Start Free Tutorial
+  </a>
+</div>
+
           </div>
         </div>
       </div>
