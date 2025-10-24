@@ -187,11 +187,14 @@ const Footer = () => {
 
             <div>
               <h3 className="font-semibold text-lg mb-6 text-white">Stay Updated</h3>
-              <p className="text-sm text-gray-400 mb-6 leading-relaxed">
+              <p className="text-sm text-gray-400 mb-4 leading-relaxed">
                 Get the latest updates on courses, learning tips, and industry insights.
               </p>
 
-              {!user && (
+              {/* Benefits List */}
+              
+
+              {!user ? (
                 <div className="space-y-3">
                   <input
                     type="email"
@@ -207,12 +210,28 @@ const Footer = () => {
                     Subscribe Now
                   </button>
                 </div>
+              ) : (
+                <div className="bg-gradient-to-br from-gray-800 to-gray-900 border border-gray-700 rounded-lg p-4">
+                  <div className="flex items-center gap-2 mb-2">
+                    <span className="text-2xl">📧</span>
+                    <span className="text-sm font-semibold text-white">You're subscribed!</span>
+                  </div>
+                  <p className="text-xs text-gray-400 mb-3">
+                    We'll keep you updated with the latest courses and offers.
+                  </p>
+                  <a 
+                    href="/course-list" 
+                    className="block w-full text-center bg-gradient-to-r from-purple-600 to-blue-600 text-white text-sm font-medium rounded-lg px-4 py-2 hover:from-purple-700 hover:to-blue-700 transition-all duration-300"
+                  >
+                    Explore Courses
+                  </a>
+                </div>
               )}
             </div>
           </div>
 
-          <div className="border-t border-gray-800 pt-0.5 ">
-            <div className="flex flex-col md:flex-row pb-4   justify-between items-center gap-4">
+          <div className="border-t border-gray-800 pt-4">
+            <div className="flex flex-col md:flex-row pb-2 justify-between items-center gap-4">
               <p className="text-sm text-gray-500">
                 © 2025 EdTechBd. All rights reserved.
               </p>
