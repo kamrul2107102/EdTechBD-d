@@ -1,0 +1,59 @@
+# Dependencies
+node_modules/
+*/node_modules/
+
+# Environment variables - NEVER COMMIT THESE!
+.env
+.env.local
+.env.development
+.env.production
+.env.test
+*.env
+**/.env
+**/.env.local
+**/.env.production
+
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+
+# OS
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+
+# Editor
+.vscode/*
+!.vscode/extensions.json
+.idea
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Build outputs
+dist/
+dist-ssr/
+build/
+*.local
+
+# Testing
+coverage/
+
+# Misc
+.cache
+.vercel
+.turbo
+
+# API Keys and Secrets (extra protection)
+**/secrets/
+*.key
+*.pem
+config/keys.js
+config/secrets.js
