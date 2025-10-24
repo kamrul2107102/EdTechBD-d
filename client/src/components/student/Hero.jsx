@@ -44,14 +44,40 @@ const Hero = () => {
 
   return (
     <div className="relative w-full min-h-[85vh] md:min-h-[90vh] bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50">
-      {/* Hero Image */}
-      <div className="w-full h-auto">
-  <img
-    src="https://img-c.udemycdn.com/notices/home_carousel_slide/image/c384c746-4a80-4e9f-8582-b0067704540b.jpg"
-    alt="Hero Banner"
-    className="w-full h-auto object-contain"
-  />
-</div>
+      {/* Hero Image with Text Overlay */}
+      <div className="relative w-full h-auto">
+        <img
+          src="https://img-c.udemycdn.com/notices/home_carousel_slide/image/c384c746-4a80-4e9f-8582-b0067704540b.jpg"
+          alt="Hero Banner"
+          className="w-full h-auto object-contain"
+        />
+        {/* Text Overlay */}
+        <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/40 to-transparent flex items-center">
+          <div className="px-8 md:px-16 lg:px-24 max-w-3xl">
+            <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold text-white mb-4 leading-tight">
+              Transform Your Future with{" "}
+             
+            </h2>
+            <p className="text-lg md:text-xl lg:text-2xl text-gray-200 mb-6 leading-relaxed">
+              Master in-demand skills with expert-led courses in Python, JavaScript, Machine Learning & more
+            </p>
+            <div className="flex flex-wrap gap-4">
+              <a 
+                href="/course-list"
+                className="px-6 py-3 bg-gradient-to-r from-purple-600 to-blue-600 text-white font-semibold rounded-lg hover:from-purple-700 hover:to-blue-700 transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105"
+              >
+                Explore Courses
+              </a>
+              <a 
+                href="/learn"
+                className="px-6 py-3 bg-white/10 backdrop-blur-sm text-white font-semibold rounded-lg border-2 border-white/30 hover:bg-white/20 transition-all duration-300"
+              >
+                Start Free Tutorial
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
 
 
 
