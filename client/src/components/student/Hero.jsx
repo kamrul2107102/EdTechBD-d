@@ -54,21 +54,24 @@ const Hero = () => {
         {/* Text Overlay */}
         <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/40 to-transparent flex items-center">
           <div className="px-8 md:px-16 lg:px-24 max-w-3xl">
-            <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold text-white mb-4 leading-tight">
+            {/* THIS TEXT IS NOW HIDDEN ON MOBILE */}
+            <h2 className="hidden md:block text-3xl md:text-5xl lg:text-6xl font-bold text-white mb-4 leading-tight">
               Transform Your Future with{" "}
-             
             </h2>
-            <p className="text-lg md:text-xl lg:text-2xl text-gray-200 mb-6 leading-relaxed">
-              Master in-demand skills with expert-led courses in Python, JavaScript, Machine Learning & more
+            {/* THIS TEXT IS NOW HIDDEN ON MOBILE */}
+            <p className="hidden md:block text-lg md:text-xl lg:text-2xl text-gray-200 mb-6 leading-relaxed">
+              Master in-demand skills with expert-led courses in Python,
+              JavaScript, Machine Learning & more
             </p>
+            {/* Buttons remain visible */}
             <div className="flex flex-wrap gap-4">
-              <a 
+              <a
                 href="/course-list"
                 className="px-6 py-3 bg-gradient-to-r from-purple-600 to-blue-600 text-white font-semibold rounded-lg hover:from-purple-700 hover:to-blue-700 transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105"
               >
                 Explore Courses
               </a>
-              <a 
+              <a
                 href="/learn"
                 className="px-6 py-3 bg-white/10 backdrop-blur-sm text-white font-semibold rounded-lg border-2 border-white/30 hover:bg-white/20 transition-all duration-300"
               >
@@ -79,8 +82,6 @@ const Hero = () => {
         </div>
       </div>
 
-
-
       {/* Decorative background elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-20 left-10 w-72 h-72 bg-blue-200 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob"></div>
@@ -90,7 +91,6 @@ const Hero = () => {
 
       {/* Content */}
       <div className="relative z-10 flex flex-col items-center justify-center w-full px-6 md:px-8 py-12 space-y-8 text-center max-w-6xl mx-auto">
-        
         {/* Badge */}
         <div className="inline-flex items-center px-4 py-2 rounded-full bg-blue-100 text-blue-700 text-sm font-medium shadow-sm border border-blue-200">
           <span className="relative flex h-2 w-2 mr-2">
@@ -131,7 +131,6 @@ const Hero = () => {
           </p>
         </div>
 
-        
         {/* Stats or Trust indicators */}
         <div className="flex flex-wrap items-center justify-center gap-8 md:gap-12 pt-8 text-gray-700">
           <div className="text-center">
